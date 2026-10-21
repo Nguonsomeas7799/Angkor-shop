@@ -1,0 +1,3078 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANGKOR SHOP // Urban Fashion, Streetwear & Footwear Flagship</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter, Space Grotesk, Kantumruy Pro (Khmer), JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Kantumruy+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Kantumruy Pro', 'sans-serif'],
+                        display: ['Space Grotesk', 'Kantumruy Pro', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.35);
+            --bg-primary: #09090b;
+            --bg-elevated: rgba(24, 24, 27, 0.85);
+            --text-main: #f8fafc;
+            --text-muted: #a1a1aa;
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        html.light {
+            --bg-primary: #f8fafc;
+            --bg-elevated: rgba(255, 255, 255, 0.94);
+            --text-main: #09090b;
+            --text-muted: #52525b;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .studio-panel {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .studio-pill {
+            background: rgba(128, 128, 128, 0.1);
+            border: 1px solid var(--border-color);
+            transition: all 0.25s ease;
+        }
+        .studio-pill:hover {
+            border-color: var(--accent);
+        }
+
+        .accent-text { color: var(--accent); transition: color 0.3s ease; }
+        .accent-bg { background-color: var(--accent); transition: background-color 0.3s ease; }
+        .accent-border { border-color: var(--accent); transition: border-color 0.3s ease; }
+
+        /* 3:4 Portrait Product Card Hover Swap & Slide-Up Bar */
+        .angkor-card .img-secondary {
+            opacity: 0;
+            transform: scale(1.06);
+            transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .angkor-card .img-primary {
+            transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .angkor-card:hover .img-secondary {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+        .angkor-card:hover .img-primary {
+            transform: scale(1.05);
+        }
+        .angkor-card .quick-action-bar {
+            transform: translateY(102%);
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .angkor-card:hover .quick-action-bar {
+            transform: translateY(0%);
+        }
+
+        /* Active Collection Ring */
+        .story-ring-active {
+            box-shadow: 0 0 0 2px var(--accent), 0 8px 25px var(--accent-glow);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(150, 150, 150, 0.3); border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Telegram Chatbot Subtle Pattern & Animation */
+        .tg-chat-bg {
+            background-color: #0e1621;
+            background-image: radial-gradient(rgba(42, 171, 238, 0.09) 1px, transparent 1px),
+                              radial-gradient(rgba(245, 158, 11, 0.06) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+        }
+        html.light .tg-chat-bg {
+            background-color: #e3eff6;
+            background-image: radial-gradient(rgba(42, 171, 238, 0.14) 1px, transparent 1px);
+            background-size: 22px 22px;
+        }
+        @keyframes tgPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(42, 171, 238, 0.65); }
+            50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(42, 171, 238, 0); }
+        }
+        .tg-pulse-btn {
+            animation: tgPulse 2.4s infinite;
+        }
+
+        /* ========== MOBILE FIXES (smartphones) ========== */
+        @media (max-width: 640px) {
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw;
+            }
+
+            /* Tighter page padding */
+            main {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+                padding-top: 12px !important;
+            }
+
+            /* Header: smaller logo & controls */
+            header .max-w-7xl {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                gap: 6px !important;
+            }
+            header .w-12.h-12 {
+                width: 36px !important;
+                height: 36px !important;
+            }
+            header .font-display.text-xl,
+            header .font-display.sm\:text-2xl {
+                font-size: 1rem !important;
+            }
+            header #brand-sub {
+                font-size: 8px !important;
+            }
+
+            /* Hide less important header buttons on very small screens */
+            header .studio-pill.px-3 {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+
+            /* Hero smaller */
+            #hero-photo,
+            section .h-\[430px\] {
+                height: 320px !important;
+            }
+            #hero-title {
+                font-size: 1.5rem !important;
+                line-height: 1.15 !important;
+            }
+            #hero-desc {
+                font-size: 0.8rem !important;
+            }
+
+            /* Collection stories: horizontal scroll instead of cramped grid */
+            #collection-stories-bar {
+                display: flex !important;
+                overflow-x: auto !important;
+                gap: 10px !important;
+                padding-bottom: 6px;
+                -webkit-overflow-scrolling: touch;
+            }
+            #collection-stories-bar > button {
+                min-width: 140px;
+                flex-shrink: 0;
+            }
+
+            /* Category tiles */
+            section.grid.grid-cols-2 {
+                gap: 8px !important;
+            }
+            section.grid.grid-cols-2 .h-36 {
+                height: 110px !important;
+            }
+
+            /* Product grid tighter */
+            #product-grid {
+                gap: 10px !important;
+            }
+            #product-grid .p-3\.5,
+            #product-grid .sm\:p-4 {
+                padding: 10px !important;
+            }
+
+            /* Filter bar stack cleanly */
+            #catalog-section .studio-panel {
+                padding: 12px !important;
+            }
+
+            /* Outfit builder */
+            #outfit-studio-section .studio-panel {
+                padding: 14px !important;
+            }
+            #outfit-studio-section h2 {
+                font-size: 1.15rem !important;
+            }
+            #bundle-step-tops,
+            #bundle-step-bottoms,
+            #bundle-step-footwear {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Cart drawer full width on phone */
+            #cart-drawer {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            /* Telegram chatbot fits phone */
+            #tg-bot-window {
+                width: calc(100vw - 20px) !important;
+                max-width: 100% !important;
+                right: 0;
+            }
+            #tg-launcher-btn {
+                padding-left: 12px !important;
+                padding-right: 14px !important;
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+            }
+            #tg-launcher-btn .text-xs {
+                font-size: 11px !important;
+            }
+
+            /* Top promo bar */
+            .relative.z-40.bg-zinc-950 {
+                font-size: 10px !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+
+            /* Footer */
+            footer {
+                padding: 24px 12px !important;
+            }
+
+            /* Quick view modal */
+            #quick-view-modal > div {
+                max-height: 95vh !important;
+                margin: 8px !important;
+            }
+
+            /* Touch: always show quick action on product cards (no hover on phone) */
+            .angkor-card .quick-action-bar {
+                transform: translateY(0%) !important;
+                background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.55), transparent) !important;
+            }
+            .angkor-card .img-secondary {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #hero-title {
+                font-size: 1.25rem !important;
+            }
+            header .font-display {
+                font-size: 0.9rem !important;
+            }
+            #nav-bag-text {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-amber-500 selection:text-black relative">
+
+    <!-- TOP FLASH SALE, HOTLINE (096 796 2929), TELEGRAM & EMAIL TICKER BAR -->
+    <div class="relative z-40 bg-zinc-950 text-white border-b border-white/10 text-[11px] sm:text-xs font-mono py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded accent-bg text-zinc-950 font-black uppercase tracking-wider">ANGKOR DROP FW26</span>
+                <span id="promo-banner-text" class="text-zinc-200">
+                    FREE PHNOM PENH EXPRESS DELIVERY OVER $60 • CODE <strong class="accent-text underline cursor-pointer" onclick="copyPromoCode()">ANGKOR20</strong> (20% OFF)
+                </span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 text-zinc-300">
+                <a href="tel:0967962929" class="flex items-center gap-1 hover:text-amber-400 transition font-semibold" title="Call ANGKOR SHOP Hotline">
+                    <i class="ph-fill ph-phone-call text-amber-400"></i>
+                    <span>096 796 2929</span>
+                </a>
+                <span class="opacity-40">•</span>
+                <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-[#2AABEE] hover:underline font-semibold" title="Chat on Telegram (+855 96 796 2929)">
+                    <i class="ph-fill ph-telegram-logo"></i>
+                    <span>Telegram</span>
+                </a>
+                <span class="hidden sm:inline opacity-40">•</span>
+                <a href="mailto:nguonsomeas7799@gmail.com" class="hidden sm:flex items-center gap-1 hover:text-amber-400 transition" title="Email ANGKOR SHOP">
+                    <i class="ph-fill ph-envelope-simple text-amber-400"></i>
+                    <span>nguonsomeas7799@gmail.com</span>
+                </a>
+                <span class="hidden lg:inline opacity-40">•</span>
+                <span class="hidden lg:flex items-center gap-1 text-amber-400 font-bold">
+                    <i class="ph-fill ph-lightning"></i> <span id="flash-timer" class="font-mono text-white">04:42:19</span>
+                </span>
+                <span id="active-collection-indicator" class="hidden">COLLECTION: ALL DROPS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY MAIN ANGKOR SHOP NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 studio-panel border-b">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-3">
+            <!-- Custom SVG Brand Logo: ANGKOR SHOP (3-Spire Lotus Geometric Emblem) -->
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="#" onclick="selectCollection('all'); return false;" class="flex items-center gap-3 group">
+                    <!-- Custom Designed Vector SVG Emblem -->
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 via-zinc-900 to-black border border-amber-500/50 flex items-center justify-center shadow-lg group-hover:scale-105 transition p-1.5 relative overflow-hidden">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="angkorGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fde68a"/>
+                                    <stop offset="50%" stop-color="#f59e0b"/>
+                                    <stop offset="100%" stop-color="#b45309"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Outer Geometric Diamond Halo -->
+                            <polygon points="50,4 94,50 50,96 6,50" stroke="url(#angkorGoldGrad)" stroke-width="2.5" stroke-opacity="0.45"/>
+                            <!-- Central Iconic Angkor Lotus Spire -->
+                            <path d="M50 12 L58 34 L63 54 L37 54 L42 34 Z" fill="url(#angkorGoldGrad)"/>
+                            <circle cx="50" cy="9" r="2.5" fill="#fde68a"/>
+                            <!-- Left Flanking Temple Spire -->
+                            <path d="M27 28 L33 44 L35 54 L19 54 L21 44 Z" fill="url(#angkorGoldGrad)" opacity="0.88"/>
+                            <circle cx="27" cy="24" r="2" fill="#f59e0b"/>
+                            <!-- Right Flanking Temple Spire -->
+                            <path d="M73 28 L79 44 L81 54 L65 54 L67 44 Z" fill="url(#angkorGoldGrad)" opacity="0.88"/>
+                            <circle cx="73" cy="24" r="2" fill="#f59e0b"/>
+                            <!-- Stepped Khmer Foundation Terrace -->
+                            <rect x="15" y="58" width="70" height="5.5" rx="2.5" fill="url(#angkorGoldGrad)"/>
+                            <rect x="22" y="67" width="56" height="4.5" rx="2" fill="url(#angkorGoldGrad)" opacity="0.85"/>
+                            <!-- Stylized Lotus Reflection Pedestal -->
+                            <path d="M34 76 L66 76 L58 84 L42 84 Z" fill="url(#angkorGoldGrad)" opacity="0.65"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-display font-black tracking-tighter text-xl sm:text-2xl">ANGKOR</span>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded-md accent-bg text-zinc-950 font-black tracking-wider">SHOP</span>
+                        </div>
+                        <span id="brand-sub" class="text-[10px] font-mono uppercase tracking-widest opacity-65 block">PHNOM PENH • EST. 2026</span>
+                    </div>
+                </a>
+
+                </div>
+
+            <!-- Live Search Bar (Desktop) -->
+            <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
+                <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 opacity-60 text-lg"></i>
+                <input id="search-input" type="text" oninput="handleSearch(this.value)"
+                       placeholder="Search Angkor hoodies, cargo pants, sneakers, trench coats..."
+                       class="w-full pl-10 pr-9 py-2 rounded-full studio-pill text-sm focus:outline-none focus:border-amber-500 transition bg-transparent">
+                <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 opacity-60 hover:opacity-100">
+                    <i class="ph-fill ph-x-circle"></i>
+                </button>
+            </div>
+
+            <!-- Right Utility, Telegram Chatbot & Bag Actions -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Header Telegram Contact -->
+                <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-[#2AABEE]/15 hover:bg-[#2AABEE]/25 border border-[#2AABEE]/40 text-[#2AABEE] text-xs font-mono font-bold flex items-center gap-1.5 transition" title="Chat on Telegram">
+                    <i class="ph-fill ph-telegram-logo text-base"></i>
+                    <span class="hidden lg:inline">TELEGRAM</span>
+                </a>
+
+                <!-- Language Switcher: EN / ខ្មែរ -->
+                <button onclick="toggleLanguage()" class="studio-pill px-2 sm:px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1 sm:gap-1.5 hover:scale-105 transition" title="Switch Language (English / Khmer)">
+                    <i class="ph-bold ph-translate accent-text text-sm"></i>
+                    <span id="lang-label" class="hidden xs:inline sm:inline">EN</span>
+                </button>
+
+                <!-- Light / Dark Theme Toggle -->
+                <button onclick="toggleThemeMode()" class="studio-pill p-2.5 rounded-xl hover:scale-105 transition" title="Toggle Light / Dark Mode">
+                    <i id="theme-icon" class="ph-fill ph-sun text-lg accent-text"></i>
+                </button>
+
+                <!-- Wishlist Filter Toggle -->
+                <button onclick="toggleWishlistFilter()" id="wishlist-nav-btn" class="studio-pill px-3 py-2 rounded-xl text-xs font-mono flex items-center gap-1.5">
+                    <i id="wishlist-nav-icon" class="ph-bold ph-heart text-base accent-text"></i>
+                    <span id="wishlist-count" class="font-bold">0</span>
+                </button>
+
+                <!-- Shopping Bag Drawer Trigger -->
+                <button onclick="toggleCartDrawer(true)" class="accent-bg text-zinc-950 font-black px-2.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 shadow-lg hover:brightness-110 transition">
+                    <i class="ph-bold ph-handbag text-lg"></i>
+                    <span id="nav-bag-text" class="hidden md:inline">BAG</span>
+                    <span id="cart-badge" class="px-1.5 py-0.5 rounded-full bg-black text-white font-mono text-xs min-w-[1.25rem] text-center">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="md:hidden px-4 pb-3">
+            <div class="relative">
+                <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 opacity-60"></i>
+                <input id="search-input-mobile" type="text" oninput="handleSearch(this.value)"
+                       placeholder="Search Angkor hoodies, cargos, sneakers, bags..."
+                       class="w-full pl-10 pr-4 py-2 rounded-full studio-pill text-xs bg-transparent focus:outline-none">
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN E-COMMERCE CONTAINER -->
+    <main class="relative z-20 max-w-7xl mx-auto px-3 sm:px-6 pt-3 sm:pt-5 pb-24 sm:pb-20 space-y-6 sm:space-y-10">
+
+        <!-- 1. ANGKOR SHOP VISUAL COLLECTION STORY CIRCLES -->
+        <section aria-label="Fashion Style Collections">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full accent-bg animate-ping"></span>
+                    <h2 id="stories-heading" class="text-xs font-mono uppercase tracking-widest opacity-80 font-bold">
+                        SHOP BY STYLE EDIT & DEPARTMENT COLLECTION
+                    </h2>
+                </div>
+                <span class="text-xs font-mono accent-text flex items-center gap-1">
+                    <i class="ph-fill ph-sparkle"></i> FW26 New Drop
+                </span>
+            </div>
+
+            <div id="collection-stories-bar" class="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
+                <!-- Populated dynamically with 6 Fashion Collections -->
+            </div>
+        </section>
+
+        <!-- 2. EDITORIAL HERO LOOKBOOK BANNER (WITH CUSTOM ANGKOR WATERMARK EMBLEM) -->
+        <section class="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
+            <div class="relative h-[300px] sm:h-[500px] w-full overflow-hidden bg-zinc-900">
+                <img id="hero-photo"
+                     src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1600&q=85"
+                     alt="ANGKOR SHOP Lookbook"
+                     onerror="this.src='https://placehold.co/1600x900/18181b/f59e0b?text=ANGKOR+SHOP+LOOKBOOK'"
+                     class="w-full h-full object-cover object-center transform scale-105 transition-all duration-700">
+                <!-- High-Contrast Editorial Gradient Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/25"></div>
+            </div>
+
+            <!-- Hero Editorial Content Overlay -->
+            <div class="absolute inset-0 p-6 sm:p-12 flex flex-col justify-between text-white">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-amber-500/40 text-xs font-mono uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full accent-bg"></span>
+                        <span id="hero-tag" class="accent-text font-bold">ANGKOR SHOP // FW26 FLAGSHIP</span>
+                    </div>
+
+                    <div class="hidden sm:flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-xs font-mono">
+                        <i class="ph-fill ph-map-pin accent-text"></i>
+                        <span id="hero-sub-pill" class="text-zinc-200">Phnom Penh Flagship • Free Express over $60</span>
+                    </div>
+                </div>
+
+                <div class="max-w-2xl space-y-4">
+                    <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-300">
+                        <span class="px-2.5 py-0.5 rounded bg-amber-400/20 border border-amber-400/40 font-bold">SEASON SALE UP TO 35% OFF</span>
+                        <span id="hero-code-tag" class="text-zinc-300">CODE: ANGKOR20</span>
+                    </div>
+
+                    <h1 id="hero-title" class="font-display text-xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.1] sm:leading-[1.03]">
+                        ANGKOR SHOP // URBAN FASHION & STREETWEAR
+                    </h1>
+
+                    <p id="hero-desc" class="text-zinc-200 text-sm sm:text-base max-w-xl leading-relaxed">
+                        Born in Phnom Penh. Discover oversized 480GSM heavyweight hoodies, utility parachute cargos, chunky retro runners, and contemporary tailored outerwear.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <a href="#catalog-section" class="px-6 py-3.5 rounded-xl accent-bg text-zinc-950 font-black text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 hover:brightness-110 transition shadow-xl">
+                            <span id="hero-cta-primary">SHOP COLLECTION NOW</span>
+                            <i class="ph-bold ph-arrow-down-right text-base"></i>
+                        </a>
+                        <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-xl bg-[#2AABEE] hover:brightness-110 text-white font-black text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 transition shadow-xl">
+                            <i class="ph-fill ph-telegram-logo text-lg"></i>
+                            <span>ORDER ON TELEGRAM</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VISUAL DEPARTMENT BANNER TILES (4 CORE FASHION CATEGORIES) -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+            <button onclick="setCategoryFilter('tops')" class="group relative h-36 sm:h-44 rounded-2xl overflow-hidden border border-white/15 text-left">
+                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80" alt="Tops & Outerwear"
+                     onerror="this.src='https://placehold.co/600x400/18181b/f59e0b?text=TOPS+%26+OUTERWEAR'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+                    <span class="text-[10px] font-mono uppercase tracking-widest accent-text font-bold">HOODIES, TEES & JACKETS</span>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm sm:text-lg font-display font-black text-white uppercase" data-i18n="cat_tops">Tops & Outerwear</h3>
+                        <i class="ph-bold ph-arrow-up-right text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+                    </div>
+                </div>
+            </button>
+
+            <button onclick="setCategoryFilter('bottoms')" class="group relative h-36 sm:h-44 rounded-2xl overflow-hidden border border-white/15 text-left">
+                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=700&q=80" alt="Bottoms & Cargo"
+                     onerror="this.src='https://placehold.co/600x400/18181b/f59e0b?text=CARGO+%26+DENIM'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+                    <span class="text-[10px] font-mono uppercase tracking-widest accent-text font-bold">PARACHUTE, DENIM & TAILORED</span>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm sm:text-lg font-display font-black text-white uppercase" data-i18n="cat_bottoms">Bottoms & Cargo</h3>
+                        <i class="ph-bold ph-arrow-up-right text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+                    </div>
+                </div>
+            </button>
+
+            <button onclick="setCategoryFilter('footwear')" class="group relative h-36 sm:h-44 rounded-2xl overflow-hidden border border-white/15 text-left">
+                <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80" alt="Sneakers & Footwear"
+                     onerror="this.src='https://placehold.co/600x400/18181b/f59e0b?text=SNEAKERS'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+                    <span class="text-[10px] font-mono uppercase tracking-widest accent-text font-bold">RUNNERS, LOAFERS & BOOTS</span>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm sm:text-lg font-display font-black text-white uppercase" data-i18n="cat_footwear">Sneakers & Footwear</h3>
+                        <i class="ph-bold ph-arrow-up-right text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+                    </div>
+                </div>
+            </button>
+
+            <button onclick="setCategoryFilter('accessories')" class="group relative h-36 sm:h-44 rounded-2xl overflow-hidden border border-white/15 text-left">
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80" alt="Bags & Accessories"
+                     onerror="this.src='https://placehold.co/600x400/18181b/f59e0b?text=BAGS+%26+WATCHES'"
+                     class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+                    <span class="text-[10px] font-mono uppercase tracking-widest accent-text font-bold">CROSSBODY, EYEWEAR & WATCHES</span>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm sm:text-lg font-display font-black text-white uppercase" data-i18n="cat_accessories">Bags & Accessories</h3>
+                        <i class="ph-bold ph-arrow-up-right text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+                    </div>
+                </div>
+            </button>
+        </section>
+
+        <!-- 4. FILTER & SORT TOOLBAR + ANGKOR SHOP 3:4 PORTRAIT PRODUCT GRID -->
+        <section id="catalog-section" class="space-y-6 pt-2">
+            <div class="studio-panel rounded-2xl p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+                <!-- Category Filter Pills -->
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 lg:pb-0">
+                    <button onclick="setCategoryFilter('all')" id="cat-btn-all" class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider shrink-0 transition accent-bg text-zinc-950">
+                        All Items (<span id="total-count-pill">20</span>)
+                    </button>
+                    <button onclick="setCategoryFilter('tops')" id="cat-btn-tops" class="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0 studio-pill">
+                        Tops & Jackets
+                    </button>
+                    <button onclick="setCategoryFilter('bottoms')" id="cat-btn-bottoms" class="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0 studio-pill">
+                        Bottoms & Cargo
+                    </button>
+                    <button onclick="setCategoryFilter('footwear')" id="cat-btn-footwear" class="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0 studio-pill">
+                        Sneakers & Footwear
+                    </button>
+                    <button onclick="setCategoryFilter('accessories')" id="cat-btn-accessories" class="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0 studio-pill">
+                        Bags & Accessories
+                    </button>
+                </div>
+
+                <!-- Right Controls: Sale Filter, Price Slider & Sort Select -->
+                <div class="flex flex-wrap items-center justify-between lg:justify-end gap-3">
+                    <!-- On Sale Toggle -->
+                    <button onclick="toggleSaleOnly()" id="sale-filter-btn" class="px-3 py-1.5 rounded-xl text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-400 flex items-center gap-1.5 hover:bg-amber-500/20 transition">
+                        <i class="ph-fill ph-tag"></i>
+                        <span>FLASH SALE ONLY</span>
+                    </button>
+
+                    <!-- Max Price Slider -->
+                    <div class="flex items-center gap-2 studio-pill px-3 py-1.5 rounded-xl">
+                        <span class="text-xs font-mono opacity-80">Max: <strong id="price-filter-label" class="accent-text">$150</strong></span>
+                        <input id="price-slider" type="range" min="25" max="150" step="5" value="150" oninput="handlePriceFilter(this.value)" class="w-24 accent-amber-500 cursor-pointer">
+                    </div>
+
+                    <!-- Sort Select -->
+                    <select id="sort-select" onchange="handleSort(this.value)"
+                            class="studio-pill rounded-xl px-3 py-2 text-xs font-mono bg-transparent focus:outline-none">
+                        <option value="featured" class="bg-zinc-900 text-white">SORT: FEATURED DROP</option>
+                        <option value="price-asc" class="bg-zinc-900 text-white">PRICE: LOW TO HIGH</option>
+                        <option value="price-desc" class="bg-zinc-900 text-white">PRICE: HIGH TO LOW</option>
+                        <option value="rating" class="bg-zinc-900 text-white">TOP RATED</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Active Filter Status Row -->
+            <div class="flex items-center justify-between text-xs font-mono opacity-75 px-1">
+                <div>
+                    Showing <strong id="showing-count" class="accent-text">20</strong> pieces in <strong id="showing-collection-label" class="uppercase">All Collections</strong>
+                </div>
+                <button onclick="resetAllFilters()" class="hover:underline">Reset All Filters</button>
+            </div>
+
+            <!-- ANGKOR SHOP 3:4 PORTRAIT PRODUCT CARDS GRID -->
+            <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- 5. INTERACTIVE "COMPLETE THE LOOK" 3-PIECE OUTFIT BUILDER STUDIO (-15% BUNDLE) -->
+        <section id="outfit-studio-section" class="pt-8">
+            <div class="studio-panel rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6 mb-8">
+                    <div>
+                        <span class="text-xs font-mono uppercase tracking-widest accent-text font-bold">ANGKOR STYLIST STUDIO • AUTOMATIC 15% OFF</span>
+                        <h2 id="bundle-title" class="font-display text-2xl sm:text-4xl font-black uppercase tracking-tight mt-1">
+                            COMPLETE THE LOOK: 3-PIECE OUTFIT BUILDER
+                        </h2>
+                    </div>
+                    <p class="text-xs sm:text-sm opacity-75 max-w-md">
+                        Mix and match 1 Top or Jacket + 1 Utility Cargo or Denim Bottom + 1 Pair of Sneakers to unlock an instant 15% full-fit discount.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- 3 Step Outfit Selectors -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Step 1: Top / Outerwear -->
+                        <div>
+                            <label class="text-xs font-mono uppercase tracking-wider opacity-75 block mb-2.5">
+                                1. SELECT TOP / OUTERWEAR PIECE
+                            </label>
+                            <div id="bundle-step-tops" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+                        </div>
+
+                        <!-- Step 2: Bottom / Cargo / Denim -->
+                        <div>
+                            <label class="text-xs font-mono uppercase tracking-wider opacity-75 block mb-2.5">
+                                2. SELECT BOTTOM / CARGO / TROUSER
+                            </label>
+                            <div id="bundle-step-bottoms" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+                        </div>
+
+                        <!-- Step 3: Footwear -->
+                        <div>
+                            <label class="text-xs font-mono uppercase tracking-wider opacity-75 block mb-2.5">
+                                3. SELECT SNEAKERS / FOOTWEAR
+                            </label>
+                            <div id="bundle-step-footwear" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Live 3-Piece Lookbook Collage & Price Calculator -->
+                    <div class="lg:col-span-5 studio-pill rounded-3xl p-5 sm:p-6 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono uppercase tracking-wider accent-text font-bold">YOUR CURATED 3-PIECE FIT</span>
+                            <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 font-mono text-xs font-bold">SAVE 15%</span>
+                        </div>
+
+                        <!-- 3-Photo Lookbook Preview -->
+                        <div class="grid grid-cols-3 gap-2.5 h-48">
+                            <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-zinc-900">
+                                <img id="bundle-img-1" src="https://placehold.co/400x500/18181b/f59e0b?text=TOP" alt="Outfit Top" class="w-full h-full object-cover"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/400x500/18181b/f59e0b?text=TOP'">
+                                <span class="absolute bottom-1.5 left-1.5 right-1.5 text-[10px] font-mono bg-black/80 px-1.5 py-0.5 rounded text-white truncate" id="bundle-name-1">Select Top</span>
+                            </div>
+                            <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-zinc-900">
+                                <img id="bundle-img-2" src="https://placehold.co/400x500/18181b/f59e0b?text=BOTTOM" alt="Outfit Bottom" class="w-full h-full object-cover"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/400x500/18181b/f59e0b?text=BOTTOM'">
+                                <span class="absolute bottom-1.5 left-1.5 right-1.5 text-[10px] font-mono bg-black/80 px-1.5 py-0.5 rounded text-white truncate" id="bundle-name-2">Select Bottom</span>
+                            </div>
+                            <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-zinc-900">
+                                <img id="bundle-img-3" src="https://placehold.co/400x500/18181b/f59e0b?text=SHOES" alt="Outfit Footwear" class="w-full h-full object-cover"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/400x500/18181b/f59e0b?text=SHOES'">
+                                <span class="absolute bottom-1.5 left-1.5 right-1.5 text-[10px] font-mono bg-black/80 px-1.5 py-0.5 rounded text-white truncate" id="bundle-name-3">Select Shoes</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 pt-2 border-t border-white/10 text-sm">
+                            <div class="flex justify-between opacity-70">
+                                <span>Individual Pieces Total:</span>
+                                <span id="bundle-orig-price" class="font-mono line-through">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-amber-400 text-xs font-mono">
+                                <span>15% Angkor Outfit Studio Discount:</span>
+                                <span id="bundle-discount-val">-$0.00</span>
+                            </div>
+                            <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
+                                <span class="font-bold uppercase">Complete Look Price:</span>
+                                <span id="bundle-final-price" class="text-2xl sm:text-3xl font-black font-mono accent-text">$0.00</span>
+                            </div>
+                        </div>
+
+                        <button onclick="addCustomOutfitToCart()" class="w-full py-4 rounded-2xl accent-bg text-zinc-950 font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-110 transition shadow-xl">
+                            <i class="ph-bold ph-plus-circle text-lg"></i>
+                            <span>ADD FULL 3-PIECE LOOK TO BAG</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SIMPLE & MINIMAL DIRECT CONTACT STRIP (096 796 2929 & nguonsomeas7799@gmail.com) -->
+        <section id="contact-concierge-section" class="pt-2">
+            <div class="studio-panel rounded-2xl px-5 py-4 flex flex-col md:flex-row items-center justify-between gap-4 border border-white/10">
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-6 text-xs sm:text-sm font-mono">
+                    <span class="font-display font-black uppercase tracking-wider text-white flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        ANGKOR SHOP DIRECT:
+                    </span>
+                    <a href="tel:0967962929" class="flex items-center gap-1.5 accent-text font-bold hover:underline">
+                        <i class="ph-fill ph-phone-call text-base"></i>
+                        <span>096 796 2929</span>
+                    </a>
+                    <span class="opacity-30 hidden sm:inline">|</span>
+                    <a href="mailto:nguonsomeas7799@gmail.com" class="flex items-center gap-1.5 text-zinc-200 hover:text-amber-400 transition">
+                        <i class="ph-fill ph-envelope-simple text-amber-400 text-base"></i>
+                        <span>nguonsomeas7799@gmail.com</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-[#2AABEE] text-white font-mono text-xs font-black uppercase flex items-center gap-1.5 hover:brightness-110 transition shadow">
+                        <i class="ph-fill ph-telegram-logo text-sm"></i>
+                        <span>Telegram: 096 796 2929</span>
+                    </a>
+                    <a href="tel:0967962929" class="px-3.5 py-2 rounded-xl studio-pill border border-amber-500/40 text-amber-400 font-mono text-xs font-bold uppercase flex items-center gap-1.5 hover:bg-amber-500/10 transition">
+                        <i class="ph-fill ph-phone-call text-sm"></i>
+                        <span>Call Hotline</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BRAND FOOTER WITH CUSTOM SVG ANGKOR SHOP LOGO & OFFICIAL CONTACT DETAILS -->
+    <footer class="studio-panel border-t py-12 px-4 sm:px-6 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 via-zinc-900 to-black border border-amber-500/50 flex items-center justify-center p-2 shrink-0">
+                    <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,4 94,50 50,96 6,50" stroke="#f59e0b" stroke-width="2.5" stroke-opacity="0.45"/>
+                        <path d="M50 12 L58 34 L63 54 L37 54 L42 34 Z" fill="#f59e0b"/>
+                        <circle cx="50" cy="9" r="2.5" fill="#fde68a"/>
+                        <path d="M27 28 L33 44 L35 54 L19 54 L21 44 Z" fill="#f59e0b" opacity="0.85"/>
+                        <path d="M73 28 L79 44 L81 54 L65 54 L67 44 Z" fill="#f59e0b" opacity="0.85"/>
+                        <rect x="15" y="58" width="70" height="5.5" rx="2.5" fill="#f59e0b"/>
+                        <rect x="22" y="67" width="56" height="4.5" rx="2" fill="#f59e0b" opacity="0.85"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="font-display font-black text-xl tracking-tight">ANGKOR SHOP</h4>
+                    <p class="text-xs font-mono opacity-65">BKK1 Flagship • Phnom Penh, Cambodia • Same-Day Express Delivery</p>
+                    <div class="flex flex-wrap items-center gap-3 mt-2 text-xs font-mono">
+                        <a href="tel:0967962929" class="accent-text font-bold hover:underline flex items-center gap-1">
+                            <i class="ph-fill ph-phone"></i> 096 796 2929
+                        </a>
+                        <span>•</span>
+                        <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="text-[#2AABEE] font-bold hover:underline flex items-center gap-1">
+                            <i class="ph-fill ph-telegram-logo"></i> Telegram: +855 96 796 2929
+                        </a>
+                        <span>•</span>
+                        <a href="mailto:nguonsomeas7799@gmail.com" class="hover:text-amber-400 underline flex items-center gap-1">
+                            <i class="ph-fill ph-envelope-simple"></i> nguonsomeas7799@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-[#2AABEE]/20 border border-[#2AABEE]/50 text-[#2AABEE] text-xs font-mono font-bold flex items-center gap-2 hover:bg-[#2AABEE]/30 transition">
+                    <i class="ph-fill ph-telegram-logo text-base"></i>
+                    <span>CHAT ON TELEGRAM</span>
+                </a>
+                <a href="tel:0967962929" class="px-4 py-2.5 rounded-xl studio-pill text-xs font-mono font-bold flex items-center gap-2 hover:border-amber-500 transition">
+                    <i class="ph-fill ph-phone-call accent-text"></i>
+                    <span>096 796 2929</span>
+                </a>
+                <span class="text-xs font-mono opacity-50">© 2026 ANGKOR SHOP. Phnom Penh</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE BRAND IDENTITY & LOGO STUDIO MODAL (3 VARIATIONS + SVG DOWNLOAD) -->
+    <div id="logo-studio-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div class="studio-panel rounded-3xl max-w-3xl w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-amber-500/30 max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest accent-text font-bold">OFFICIAL VECTOR BRAND IDENTITY</span>
+                    <h3 class="font-display text-2xl sm:text-3xl font-black uppercase">ANGKOR SHOP — LOGO STUDIO</h3>
+                </div>
+                <button onclick="closeLogoModal()" class="w-9 h-9 rounded-full studio-pill flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <p class="text-xs sm:text-sm opacity-80 leading-relaxed">
+                Inspired by the iconic 3-spire silhouette of Angkor Wat fused with a modern streetwear diamond crest. Select a brand colorway below to preview or download the scalable `.svg` vector file.
+            </p>
+
+            <!-- 3 Switchable Logo Variation Tabs -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <button onclick="setLogoVariant('gold')" id="logo-var-gold" class="p-3 rounded-2xl border text-left transition studio-panel accent-border">
+                    <span class="text-[10px] font-mono uppercase text-amber-400 block font-bold">VARIANT 01</span>
+                    <span class="text-sm font-bold">Royal Angkor Gold</span>
+                </button>
+                <button onclick="setLogoVariant('mono')" id="logo-var-mono" class="p-3 rounded-2xl border text-left transition studio-pill">
+                    <span class="text-[10px] font-mono uppercase opacity-70 block font-bold">VARIANT 02</span>
+                    <span class="text-sm font-bold">Streetwear Monochrome</span>
+                </button>
+                <button onclick="setLogoVariant('neon')" id="logo-var-neon" class="p-3 rounded-2xl border text-left transition studio-pill">
+                    <span class="text-[10px] font-mono uppercase text-rose-400 block font-bold">VARIANT 03</span>
+                    <span class="text-sm font-bold">Phnom Penh Cyber Neon</span>
+                </button>
+            </div>
+
+            <!-- Live Interactive Vector SVG Stage -->
+            <div id="logo-preview-stage" class="rounded-3xl bg-zinc-950 border border-white/15 p-8 flex flex-col items-center justify-center text-center space-y-4">
+                <!-- Populated dynamically by renderLogoVariant() -->
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <div class="text-xs font-mono opacity-70">
+                    Format: <strong class="text-white">Scalable Vector SVG (100% Resolution Independent)</strong>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="copyLogoSvgCode()" class="px-4 py-3 rounded-xl studio-pill text-xs font-mono font-bold uppercase flex items-center gap-1.5 hover:border-amber-400 transition">
+                        <i class="ph-bold ph-copy"></i>
+                        <span>Copy SVG Code</span>
+                    </button>
+                    <button onclick="downloadLogoSvg()" class="px-5 py-3 rounded-xl accent-bg text-zinc-950 text-xs font-mono font-black uppercase flex items-center gap-1.5 hover:brightness-110 transition shadow-lg">
+                        <i class="ph-bold ph-download-simple text-base"></i>
+                        <span>Download .SVG Logo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT QUICK-VIEW MODAL (3-PHOTO GALLERY + SWATCHES + SIZE GUIDE) -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="studio-panel rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-12 max-h-[92vh] overflow-y-auto">
+            <!-- Left: 3:4 Portrait Photo Gallery -->
+            <div class="md:col-span-6 p-4 sm:p-6 bg-black/30 flex flex-col gap-3">
+                <div class="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-zinc-900">
+                    <img id="qv-main-img" src="" alt="Product Preview" class="w-full h-full object-cover transition-all duration-500">
+                    <span id="qv-badge" class="absolute top-3 left-3 px-3 py-1 rounded-md bg-amber-500 text-zinc-950 font-mono text-xs font-black uppercase"></span>
+                </div>
+                <!-- 3 Thumbnail Strip -->
+                <div id="qv-thumbs" class="grid grid-cols-3 gap-2.5"></div>
+            </div>
+
+            <!-- Right: Specs, Color Swatches & Size Guide -->
+            <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-5">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span id="qv-brand" class="text-xs font-mono uppercase tracking-widest accent-text font-bold"></span>
+                        <button onclick="closeQuickView()" class="w-8 h-8 rounded-full studio-pill flex items-center justify-center">
+                            <i class="ph-bold ph-x"></i>
+                        </button>
+                    </div>
+                    <h3 id="qv-title" class="font-display text-xl sm:text-2xl font-black uppercase"></h3>
+                    <div class="flex items-baseline gap-3">
+                        <span id="qv-price" class="text-2xl font-mono font-black accent-text"></span>
+                        <span id="qv-orig-price" class="text-sm font-mono opacity-50 line-through"></span>
+                    </div>
+                    <p id="qv-desc" class="text-xs sm:text-sm opacity-80 leading-relaxed"></p>
+
+                    <!-- Swatches -->
+                    <div>
+                        <span class="text-xs font-mono uppercase opacity-75">Colorway: <strong id="qv-color-name" class="text-white"></strong></span>
+                        <div id="qv-swatches" class="flex items-center gap-2.5 mt-2"></div>
+                    </div>
+
+                    <!-- Sizes -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono uppercase opacity-75">Select Size:</span>
+                            <button onclick="toggleSizeGuide()" class="text-xs font-mono accent-text underline">Size Guide (CM)</button>
+                        </div>
+                        <div id="qv-sizes" class="flex flex-wrap gap-2"></div>
+                        <div id="qv-size-guide" class="hidden mt-3 p-3 rounded-xl studio-pill text-[11px] font-mono space-y-1">
+                            <div>S: Chest 112cm • Length 68cm</div>
+                            <div>M: Chest 118cm • Length 71cm</div>
+                            <div>L: Chest 124cm • Length 74cm</div>
+                            <div>XL: Chest 130cm • Length 77cm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2.5 pt-4 border-t border-white/10">
+                    <button id="qv-add-btn" class="w-full py-3.5 rounded-xl accent-bg text-zinc-950 font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-110 transition shadow-xl">
+                        <i class="ph-bold ph-handbag text-lg"></i>
+                        <span>ADD TO SHOPPING BAG</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE-OUT SHOPPING BAG DRAWER -->
+    <div id="cart-drawer-backdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md studio-panel border-l transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-5 sm:p-6">
+        <div class="space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-handbag text-xl accent-text"></i>
+                    <h3 class="font-display font-black text-lg uppercase">SHOPPING BAG (<span id="drawer-item-count">0</span>)</h3>
+                </div>
+                <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full studio-pill flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <!-- Free Shipping Progress -->
+            <div class="studio-pill rounded-2xl p-3 space-y-1.5">
+                <div class="flex justify-between text-[11px] font-mono">
+                    <span id="shipping-status-msg">Add $60.00 for FREE Express Delivery</span>
+                    <span id="shipping-pct" class="accent-text font-bold">0%</span>
+                </div>
+                <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                    <div id="shipping-bar" class="h-full accent-bg transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Items Scroll List -->
+        <div id="cart-items-list" class="flex-1 overflow-y-auto my-4 space-y-3 pr-1"></div>
+
+        <!-- Cart Footer Summary & Checkout -->
+        <div class="space-y-3 border-t border-white/10 pt-4">
+            <div class="flex gap-2">
+                <input id="promo-input" type="text" placeholder="Promo code (ANGKOR20)" class="flex-1 px-3 py-2 rounded-xl studio-pill text-xs font-mono uppercase bg-transparent focus:outline-none">
+                <button onclick="applyPromoCode()" class="px-4 py-2 rounded-xl studio-pill text-xs font-mono font-bold hover:border-amber-400 transition">APPLY</button>
+            </div>
+
+            <div class="space-y-1 text-xs font-mono">
+                <div class="flex justify-between opacity-75">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div id="cart-discount-row" class="hidden justify-between text-amber-400">
+                    <span>VIP Discount (ANGKOR20 -20%):</span>
+                    <span id="cart-discount-val">-$0.00</span>
+                </div>
+                <div class="flex justify-between text-base font-black pt-1 border-t border-white/10">
+                    <span>TOTAL:</span>
+                    <span id="cart-total" class="accent-text">$0.00</span>
+                </div>
+            </div>
+
+            <button onclick="completeCheckout()" class="w-full py-3.5 rounded-xl accent-bg text-zinc-950 font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-110 transition shadow-xl">
+                <i class="ph-bold ph-credit-card text-lg"></i>
+                <span>INSTANT WEB CHECKOUT</span>
+            </button>
+
+            <!-- Direct Order via Telegram (096 796 2929) or Email (nguonsomeas7799@gmail.com) -->
+            <div class="grid grid-cols-2 gap-2 pt-1">
+                <button onclick="checkoutViaTelegram()" class="py-2.5 px-3 rounded-xl bg-[#2AABEE] text-white font-mono text-[11px] font-black uppercase flex items-center justify-center gap-1.5 hover:brightness-110 transition shadow-md">
+                    <i class="ph-fill ph-telegram-logo text-base"></i>
+                    <span>Order on Telegram</span>
+                </button>
+                <button onclick="checkoutViaEmail()" class="py-2.5 px-3 rounded-xl studio-pill border border-amber-500/40 text-amber-400 font-mono text-[11px] font-black uppercase flex items-center justify-center gap-1.5 hover:bg-amber-500/10 transition">
+                    <i class="ph-fill ph-envelope-simple text-base"></i>
+                    <span>Order via Email</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- FLOATING TELEGRAM CHATBOT WIDGET & LIVE ORDER CONCIERGE (096 796 2929 / nguonsomeas7799@gmail.com) -->
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+        <!-- Telegram Chat Window -->
+        <div id="tg-bot-window" class="hidden mb-3 w-[92vw] sm:w-[390px] rounded-3xl overflow-hidden studio-panel shadow-2xl border border-[#2AABEE]/40 flex-col">
+            <!-- Telegram Header -->
+            <div class="bg-gradient-to-r from-[#1c93e3] via-[#2AABEE] to-[#1e88e5] text-white p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-11 h-11 rounded-2xl bg-zinc-950/90 border border-white/30 flex items-center justify-center p-1.5 shadow-md">
+                            <i class="ph-fill ph-telegram-logo text-2xl text-[#2AABEE]"></i>
+                        </div>
+                        <span class="w-3 h-3 rounded-full bg-emerald-400 border-2 border-zinc-950 absolute -bottom-0.5 -right-0.5"></span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <h4 class="font-display font-black text-sm tracking-tight">ANGKOR SHOP BOT</h4>
+                            <i class="ph-fill ph-seal-check text-white text-xs" title="Verified Telegram Concierge"></i>
+                        </div>
+                        <p id="tg-bot-subtitle" class="text-[11px] font-mono text-white/90">Tel: 096 796 2929 • Instant Reply</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <a href="https://t.me/+855967962929" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-black/20 hover:bg-black/35 flex items-center justify-center text-white transition" title="Open in Telegram App (+855 96 796 2929)">
+                        <i class="ph-bold ph-arrow-square-out text-sm"></i>
+                    </a>
+                    <button onclick="toggleTelegramBot(false)" class="w-8 h-8 rounded-xl bg-black/20 hover:bg-black/35 flex items-center justify-center text-white transition" title="Minimize Chat">
+                        <i class="ph-bold ph-x text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contact Info Strip inside Bot -->
+            <div class="bg-zinc-900/90 border-b border-white/10 px-3.5 py-2 flex items-center justify-between text-[11px] font-mono text-zinc-300">
+                <a href="tel:0967962929" class="hover:text-amber-400 flex items-center gap-1">
+                    <i class="ph-fill ph-phone text-amber-400"></i> 096 796 2929
+                </a>
+                <a href="mailto:nguonsomeas7799@gmail.com" class="hover:text-amber-400 flex items-center gap-1 truncate max-w-[200px]">
+                    <i class="ph-fill ph-envelope-simple text-amber-400"></i> nguonsomeas7799@gmail.com
+                </a>
+            </div>
+
+            <!-- Messages Scroll Feed -->
+            <div id="tg-chat-messages" class="tg-chat-bg h-80 overflow-y-auto p-3.5 space-y-3 text-xs">
+                <!-- Populated dynamically by initTelegramBot() -->
+            </div>
+
+            <!-- Quick Command Chips -->
+            <div class="px-3 py-2 bg-zinc-950/90 border-t border-white/10 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                <button onclick="triggerBotCommand('send_cart')" class="px-2.5 py-1.5 rounded-full bg-[#2AABEE]/20 border border-[#2AABEE]/40 text-[#2AABEE] font-mono text-[10px] font-bold shrink-0 hover:bg-[#2AABEE]/30 transition">
+                    📦 Send Bag
+                </button>
+                <button onclick="triggerBotCommand('track_order')" class="px-2.5 py-1.5 rounded-full studio-pill text-[10px] font-mono font-semibold shrink-0">
+                    🚚 Track Order
+                </button>
+                <button onclick="triggerBotCommand('bestsellers')" class="px-2.5 py-1.5 rounded-full studio-pill text-[10px] font-mono font-semibold shrink-0">
+                    🔥 Best Sellers
+                </button>
+                <button onclick="triggerBotCommand('size_help')" class="px-2.5 py-1.5 rounded-full studio-pill text-[10px] font-mono font-semibold shrink-0">
+                    📏 Size
+                </button>
+                <button onclick="triggerBotCommand('promo')" class="px-2.5 py-1.5 rounded-full studio-pill text-[10px] font-mono font-semibold shrink-0">
+                    🎟️ 20% Code
+                </button>
+                <button onclick="triggerBotCommand('contact')" class="px-2.5 py-1.5 rounded-full studio-pill text-[10px] font-mono font-semibold shrink-0">
+                    📞 Contact
+                </button>
+                <button onclick="clearChatHistory()" class="px-2.5 py-1.5 rounded-full studio-pill text-[10px] font-mono font-semibold shrink-0 text-rose-400 border-rose-500/30">
+                    🗑️ Clear
+                </button>
+            </div>
+
+            <!-- Chat Input Row -->
+            <form onsubmit="handleTelegramUserSubmit(event)" class="p-2.5 bg-zinc-900 border-t border-white/10 flex items-center gap-2">
+                <input id="tg-user-input" type="text" placeholder="Message ANGKOR SHOP Bot (EN / ខ្មែរ)..."
+                       class="flex-1 px-3.5 py-2 rounded-full bg-zinc-800/90 text-white text-xs placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#2AABEE]">
+                <button type="submit" class="w-9 h-9 rounded-full bg-[#2AABEE] text-white flex items-center justify-center hover:brightness-110 transition shrink-0 shadow-md">
+                    <i class="ph-fill ph-paper-plane-right text-base"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Floating Launcher Button -->
+        <button onclick="toggleTelegramBot()" id="tg-launcher-btn" class="tg-pulse-btn group flex items-center gap-2.5 pl-3.5 pr-4 py-3 rounded-full bg-gradient-to-r from-[#1c93e3] to-[#2AABEE] text-white shadow-2xl border border-white/25 hover:scale-105 transition">
+            <div class="relative flex items-center justify-center">
+                <i class="ph-fill ph-telegram-logo text-2xl"></i>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 border border-zinc-950 absolute -top-0.5 -right-0.5"></span>
+            </div>
+            <div class="text-left">
+                <span class="text-[10px] font-mono uppercase tracking-wider block leading-none text-white/90">TELEGRAM CHATBOT</span>
+                <span class="text-xs font-display font-black tracking-tight block leading-tight">096 796 2929</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="studio-toast" class="fixed bottom-6 left-6 z-50 max-w-sm studio-panel rounded-2xl p-4 border-l-4 accent-border transform -translate-x-[150%] transition-transform duration-500 flex items-start gap-3 shadow-2xl">
+        <i class="ph-fill ph-check-circle text-2xl accent-text mt-0.5"></i>
+        <div>
+            <h4 id="toast-title" class="text-sm font-bold uppercase">Updated</h4>
+            <p id="toast-body" class="text-xs opacity-80 mt-0.5">Action completed.</p>
+        </div>
+    </div>
+
+    <!-- APPLICATION LOGIC -->
+    <script>
+        /***********************************************************************
+         * 1. FASHION STYLE & DEPARTMENT COLLECTIONS (ANGKOR SHOP)
+         ***********************************************************************/
+        const COLLECTIONS = {
+            all: {
+                id: 'all',
+                name: 'All Collections',
+                nameKh: 'គ្រប់ម៉ូដទាំងអស់',
+                badge: 'ANGKOR SHOP // FW26 LOOKBOOK',
+                subPill: '20 Curated Pieces • Phnom Penh Flagship',
+                heroTitle: 'ANGKOR SHOP // URBAN FASHION & STREETWEAR',
+                heroTitleKh: 'ហាងសម្លៀកបំពាក់ទំនើប និងស្បែកជើង ANGKOR SHOP',
+                heroDesc: 'Born in Phnom Penh. Oversized 480GSM heavyweight hoodies, technical parachute cargos, tailored cropped outerwear, and chunky retro sneakers.',
+                heroPhoto: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1600&q=85',
+                thumbPhoto: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80',
+                accent: '#f59e0b',
+                accentGlow: 'rgba(245, 158, 11, 0.35)'
+            },
+            mens: {
+                id: 'mens',
+                name: "Men's Edit",
+                nameKh: 'ម៉ូដបុរស',
+                badge: 'ANGKOR MENSWEAR ARCHIVE',
+                subPill: 'Boxy Fits • Utility Outerwear & Denim',
+                heroTitle: 'MODERN MENSWEAR & WORKWEAR ESSENTIALS',
+                heroTitleKh: 'បណ្តុំសម្លៀកបំពាក់បុរសទាន់សម័យ ANGKOR SHOP',
+                heroDesc: 'Structured varsity bombers, relaxed selvedge denim, heavyweight boxy tees, and minimalist leather sneakers.',
+                heroPhoto: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1600&q=85',
+                thumbPhoto: 'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?auto=format&fit=crop&w=500&q=80',
+                accent: '#3b82f6',
+                accentGlow: 'rgba(59, 130, 246, 0.35)'
+            },
+            womens: {
+                id: 'womens',
+                name: "Women's Edit",
+                nameKh: 'ម៉ូដនារី',
+                badge: 'ANGKOR WOMENSWEAR ATELIER',
+                subPill: 'Cropped Silhouettes • Contemporary Chic',
+                heroTitle: 'CONTEMPORARY WOMENSWEAR & STUDIO CHIC',
+                heroTitleKh: 'បណ្តុំសម្លៀកបំពាក់នារីស៊ីវិល័យ ANGKOR SHOP',
+                heroDesc: 'Tailored cropped trench coats, high-waist wide-leg trousers, ribbed knitwear, and sculpted shoulder bags.',
+                heroPhoto: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=85',
+                thumbPhoto: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80',
+                accent: '#ec4899',
+                accentGlow: 'rgba(236, 72, 153, 0.35)'
+            },
+            streetwear: {
+                id: 'streetwear',
+                name: 'Phnom Penh Street',
+                nameKh: 'ម៉ូដយុវវ័យ Streetwear',
+                badge: 'PHNOM PENH / TOKYO UNDERGROUND',
+                subPill: '480GSM Fleece • Parachute Cargos',
+                heroTitle: 'PHNOM PENH STREETWEAR & GRAPHIC CAPSULE',
+                heroTitleKh: 'សម្លៀកបំពាក់ស្ទាយយុវវ័យ ANGKOR SHOP',
+                heroDesc: 'Acid-wash oversized hoodies, multi-pocket nylon parachute pants, distressed puff-print graphic tees, and street headwear.',
+                heroPhoto: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1600&q=85',
+                thumbPhoto: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=500&q=80',
+                accent: '#8b5cf6',
+                accentGlow: 'rgba(139, 92, 246, 0.35)'
+            },
+            sneakers: {
+                id: 'sneakers',
+                name: 'Sneaker Lab',
+                nameKh: 'ស្បែកជើងប៉ាតា',
+                badge: 'ANGKOR FOOTWEAR ARCHIVE',
+                subPill: 'Chunky Runners • Court Classics',
+                heroTitle: 'SNEAKER LAB & ARCHITECTURAL FOOTWEAR',
+                heroTitleKh: 'បណ្តុំស្បែកជើងប៉ាតា និងស្បែកជើងទាន់សម័យ',
+                heroDesc: 'Retro mesh marathon runners, vulcanized skate lows, chunky platform loafers, and weatherized combat boots.',
+                heroPhoto: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1600&q=85',
+                thumbPhoto: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80',
+                accent: '#f43f5e',
+                accentGlow: 'rgba(244, 63, 94, 0.35)'
+            },
+            accessories: {
+                id: 'accessories',
+                name: 'Tech & Bags',
+                nameKh: 'កាបូប និងគ្រឿងលម្អ',
+                badge: 'ANGKOR CARRY & EYEWEAR',
+                subPill: 'Ballistic Nylon • Acetate Frames',
+                heroTitle: 'URBAN CARRY BAGS, EYEWEAR & TIMEPIECES',
+                heroTitleKh: 'កាបូបស្ពាយ វ៉ែនតា និងនាឡិកាដៃ',
+                heroDesc: 'Waterproof ripstop crossbody slings, architectural acetate sunglasses, automatic steel watches, and leather belts.',
+                heroPhoto: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1600&q=85',
+                thumbPhoto: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=500&q=80',
+                accent: '#10b981',
+                accentGlow: 'rgba(16, 185, 129, 0.35)'
+            }
+        };
+
+        /***********************************************************************
+         * 2. 20 CURATED ANGKOR SHOP FASHION, FOOTWEAR & LIFESTYLE PRODUCTS
+         ***********************************************************************/
+        const PRODUCTS = [
+            // --- TOPS & OUTERWEAR (6) ---
+            {
+                id: 'as-1',
+                name: '480GSM Heavyweight Boxy Acid-Wash Hoodie',
+                brand: 'ANGKOR STREET',
+                collection: 'streetwear',
+                category: 'tops',
+                price: 44.00,
+                origPrice: 65.00,
+                badge: '-32%',
+                badgeType: 'sale',
+                rating: 4.9,
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                swatches: [
+                    { name: 'Washed Charcoal', hex: '#27272a' },
+                    { name: 'Angkor Gold', hex: '#f59e0b' },
+                    { name: 'Cement Grey', hex: '#a1a1aa' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80',
+                desc: 'Ultra-plush 480GSM organic French terry cotton hoodie with drop shoulders, embroidered Angkor spire crest, and vintage enzyme wash.'
+            },
+            {
+                id: 'as-2',
+                name: 'Atelier Double-Breasted Cropped Trench Coat',
+                brand: 'ANGKOR ATELIER',
+                collection: 'womens',
+                category: 'tops',
+                price: 68.00,
+                origPrice: 95.00,
+                badge: 'BESTSELLER',
+                badgeType: 'hot',
+                rating: 5.0,
+                sizes: ['XS', 'S', 'M', 'L'],
+                swatches: [
+                    { name: 'Warm Camel', hex: '#d4a373' },
+                    { name: 'Espresso Black', hex: '#18181b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+                desc: 'Modern cropped silhouette crafted from water-repellent cotton gabardine with storm flaps and tortoiseshell buckle cuffs.'
+            },
+            {
+                id: 'as-3',
+                name: 'Varsity Wool & Vegan Leather Bomber Jacket',
+                brand: 'ANGKOR ARCHIVE',
+                collection: 'mens',
+                category: 'tops',
+                price: 74.00,
+                origPrice: 105.00,
+                badge: '-30%',
+                badgeType: 'sale',
+                rating: 4.9,
+                sizes: ['S', 'M', 'L', 'XL'],
+                swatches: [
+                    { name: 'Pitch Black / Cream', hex: '#18181b' },
+                    { name: 'Emerald Temple', hex: '#065f46' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80',
+                desc: 'Heavyweight melton wool body paired with matte pebble-grain sleeves, chenille Angkor chest patches, and quilted satin lining.'
+            },
+            {
+                id: 'as-4',
+                name: 'Phnom Penh Puff-Print Oversized Graphic Tee',
+                brand: 'ANGKOR STREET',
+                collection: 'streetwear',
+                category: 'tops',
+                price: 26.00,
+                origPrice: 36.00,
+                badge: 'NEW DROP',
+                badgeType: 'new',
+                rating: 4.8,
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                swatches: [
+                    { name: 'Chalk White', hex: '#f8fafc' },
+                    { name: 'Onyx Black', hex: '#09090b' },
+                    { name: 'Amber Gold', hex: '#f59e0b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=800&q=80',
+                desc: '300GSM combed heavyweight jersey tee featuring raised 3D puff-ink Angkor geometric back print and thick ribbed collar.'
+            },
+            {
+                id: 'as-5',
+                name: 'Raw Indigo Contrast-Stitch Denim Trucker',
+                brand: 'ANGKOR MENS',
+                collection: 'mens',
+                category: 'tops',
+                price: 58.00,
+                origPrice: 78.00,
+                badge: '-26%',
+                badgeType: 'sale',
+                rating: 4.8,
+                sizes: ['S', 'M', 'L', 'XL'],
+                swatches: [
+                    { name: 'Raw Indigo', hex: '#1e3a8a' },
+                    { name: 'Washed Black', hex: '#3f3f46' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?auto=format&fit=crop&w=800&q=80',
+                desc: '14oz rigid selvedge denim jacket with gold contrast stitching, dual chest utility pockets, and custom brushed steel hardware.'
+            },
+            {
+                id: 'as-6',
+                name: 'Off-Shoulder Ribbed Merino Studio Cardigan',
+                brand: 'ANGKOR ATELIER',
+                collection: 'womens',
+                category: 'tops',
+                price: 42.00,
+                origPrice: 55.00,
+                badge: 'NEW DROP',
+                badgeType: 'new',
+                rating: 4.9,
+                sizes: ['XS', 'S', 'M', 'L'],
+                swatches: [
+                    { name: 'Lotus Rose', hex: '#f43f5e' },
+                    { name: 'Ivory Cream', hex: '#fef3c7' },
+                    { name: 'Slate Grey', hex: '#475569' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
+                desc: 'Form-fitting fine-gauge ribbed knit cardigan with asymmetric metal clasp closures and flared bell sleeves.'
+            },
+
+            // --- BOTTOMS & CARGO (5) ---
+            {
+                id: 'as-7',
+                name: 'Tactical 8-Pocket Ripstop Parachute Cargo Pants',
+                brand: 'ANGKOR STREET',
+                collection: 'streetwear',
+                category: 'bottoms',
+                price: 48.00,
+                origPrice: 68.00,
+                badge: 'BESTSELLER',
+                badgeType: 'hot',
+                rating: 5.0,
+                sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                swatches: [
+                    { name: 'Tactical Olive', hex: '#3f6212' },
+                    { name: 'Phantom Black', hex: '#18181b' },
+                    { name: 'Sandstone Khaki', hex: '#d6d3d1' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
+                desc: 'Wide-leg technical parachute trousers with articulated knee pleats, bungee cord ankle toggles, and expandable bellows pockets.'
+            },
+            {
+                id: 'as-8',
+                name: 'Baggy 90s Vintage Wash Skater Jeans',
+                brand: 'ANGKOR ARCHIVE',
+                collection: 'mens',
+                category: 'bottoms',
+                price: 52.00,
+                origPrice: 70.00,
+                badge: '-25%',
+                badgeType: 'sale',
+                rating: 4.8,
+                sizes: ['28', '30', '32', '34', '36'],
+                swatches: [
+                    { name: 'Light Vintage Blue', hex: '#60a5fa' },
+                    { name: 'Charcoal Wash', hex: '#3f3f46' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80',
+                desc: 'Relaxed straight-leg 13.5oz cotton denim with authentic hand-sanded whiskers and a stacked ankle hem.'
+            },
+            {
+                id: 'as-9',
+                name: 'High-Waist Pleated Wide-Leg Palazzo Trousers',
+                brand: 'ANGKOR ATELIER',
+                collection: 'womens',
+                category: 'bottoms',
+                price: 46.00,
+                origPrice: 62.00,
+                badge: '-26%',
+                badgeType: 'sale',
+                rating: 4.9,
+                sizes: ['XS', 'S', 'M', 'L'],
+                swatches: [
+                    { name: 'Espresso Brown', hex: '#451a03' },
+                    { name: 'Oatmeal Beige', hex: '#e7e5e4' },
+                    { name: 'Jet Black', hex: '#09090b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80',
+                desc: 'Fluid drape tailored suiting trousers with double front knife pleats, concealed hook-and-bar closure, and elongating wide leg.'
+            },
+            {
+                id: 'as-10',
+                name: 'Convertible Zip-Off Tech Nylon Track Pants',
+                brand: 'ANGKOR STREET',
+                collection: 'streetwear',
+                category: 'bottoms',
+                price: 45.00,
+                origPrice: 60.00,
+                badge: '2-IN-1 FIT',
+                badgeType: 'new',
+                rating: 4.7,
+                sizes: ['S', 'M', 'L', 'XL'],
+                swatches: [
+                    { name: 'Cyber Slate', hex: '#334155' },
+                    { name: 'Amber Trim', hex: '#f59e0b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+                desc: 'Water-resistant crinkle nylon track pants with hidden knee zippers that convert effortlessly into 7-inch street shorts.'
+            },
+            {
+                id: 'as-11',
+                name: 'Raw Hem Distressed Denim Mini Cargo Skirt',
+                brand: 'ANGKOR ARCHIVE',
+                collection: 'womens',
+                category: 'bottoms',
+                price: 34.00,
+                origPrice: 48.00,
+                badge: '-29%',
+                badgeType: 'sale',
+                rating: 4.8,
+                sizes: ['XS', 'S', 'M', 'L'],
+                swatches: [
+                    { name: 'Y2K Acid Blue', hex: '#3b82f6' },
+                    { name: 'Vintage Coal', hex: '#27272a' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80',
+                desc: 'Low-rise Y2K utility denim mini skirt complete with oversized side flap pockets, belt loops, and frayed hem detailing.'
+            },
+
+            // --- SNEAKERS & FOOTWEAR (5) ---
+            {
+                id: 'as-12',
+                name: 'Aero-Mesh 2000s Chunky Retro Runner Sneakers',
+                brand: 'ANGKOR FOOTWEAR LAB',
+                collection: 'sneakers',
+                category: 'footwear',
+                price: 79.00,
+                origPrice: 115.00,
+                badge: '-31%',
+                badgeType: 'sale',
+                rating: 5.0,
+                sizes: ['EU 39', 'EU 40', 'EU 41', 'EU 42', 'EU 43', 'EU 44'],
+                swatches: [
+                    { name: 'Metallic Silver / Gold', hex: '#f59e0b' },
+                    { name: 'Triple Phantom Black', hex: '#18181b' },
+                    { name: 'Cream / Forest', hex: '#15803d' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80',
+                desc: 'Multi-layered breathable honeycomb mesh upper with metallic synthetic overlays and dual-density gel-cushioned midsole.'
+            },
+            {
+                id: 'as-13',
+                name: 'Suede Low-Top Vulcanized Street Skate Shoes',
+                brand: 'ANGKOR FOOTWEAR LAB',
+                collection: 'sneakers',
+                category: 'footwear',
+                price: 64.00,
+                origPrice: 85.00,
+                badge: 'BESTSELLER',
+                badgeType: 'hot',
+                rating: 4.9,
+                sizes: ['EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42', 'EU 43'],
+                swatches: [
+                    { name: 'Gum Sole / Onyx', hex: '#18181b' },
+                    { name: 'Ruby Suede', hex: '#be123c' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80',
+                desc: 'Heavy-duty brushed suede skate sneakers with fat padded tongue, wide lace system, and high-grip natural gum waffle outsole.'
+            },
+            {
+                id: 'as-14',
+                name: 'Chunky Lug-Sole Polished Leather Penny Loafers',
+                brand: 'ANGKOR ATELIER',
+                collection: 'sneakers',
+                category: 'footwear',
+                price: 72.00,
+                origPrice: 98.00,
+                badge: '-27%',
+                badgeType: 'sale',
+                rating: 4.9,
+                sizes: ['EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'],
+                swatches: [
+                    { name: 'Gloss Black', hex: '#09090b' },
+                    { name: 'Oxblood Burgundy', hex: '#881337' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80',
+                desc: 'Classic penny loafer upper elevated on a 4.5cm lightweight EVA commando lug sole with memory-foam leather insole.'
+            },
+            {
+                id: 'as-15',
+                name: 'Monochrome High-Top Court Leather Sneakers',
+                brand: 'ANGKOR MENS',
+                collection: 'sneakers',
+                category: 'footwear',
+                price: 69.00,
+                origPrice: 92.00,
+                badge: 'NEW DROP',
+                badgeType: 'new',
+                rating: 4.8,
+                sizes: ['EU 40', 'EU 41', 'EU 42', 'EU 43', 'EU 44'],
+                swatches: [
+                    { name: 'Chalk / Sail', hex: '#f1f5f9' },
+                    { name: 'Shadow Grey', hex: '#52525b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+                desc: '80s basketball-inspired full-grain leather high-tops with perforated toe box, ankle strap, and vintage pre-yellowed midsole.'
+            },
+            {
+                id: 'as-16',
+                name: 'Urban Recovery Foam Slides // Angkor Edition',
+                brand: 'ANGKOR STREET',
+                collection: 'sneakers',
+                category: 'footwear',
+                price: 28.00,
+                origPrice: 38.00,
+                badge: '-26%',
+                badgeType: 'sale',
+                rating: 4.8,
+                sizes: ['EU 38', 'EU 40', 'EU 42', 'EU 44'],
+                swatches: [
+                    { name: 'Sandstone Bone', hex: '#d6d3d1' },
+                    { name: 'Matte Onyx', hex: '#18181b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80',
+                desc: 'One-piece molded dual-density EVA recovery slides with anatomical arch support and ridged anti-slip tread.'
+            },
+
+            // --- BAGS & ACCESSORIES (4) ---
+            {
+                id: 'as-17',
+                name: 'Ballistic Nylon Tactical Crossbody Messenger Bag',
+                brand: 'ANGKOR CARRY',
+                collection: 'accessories',
+                category: 'accessories',
+                price: 39.00,
+                origPrice: 54.00,
+                badge: 'BESTSELLER',
+                badgeType: 'hot',
+                rating: 5.0,
+                sizes: ['14" Laptop Fit'],
+                swatches: [
+                    { name: 'Stealth Black', hex: '#09090b' },
+                    { name: 'Jungle Olive', hex: '#4d7c0f' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80',
+                desc: '1680D waterproof ballistic nylon crossbody bag with magnetic quick-release buckle and padded 14-inch laptop compartment.'
+            },
+            {
+                id: 'as-18',
+                name: 'Cyber-Acetate Rectangular Polarized Sunglasses',
+                brand: 'ANGKOR EYEWEAR',
+                collection: 'accessories',
+                category: 'accessories',
+                price: 32.00,
+                origPrice: 45.00,
+                badge: '-29%',
+                badgeType: 'sale',
+                rating: 4.9,
+                sizes: ['One Size (54-19-145)'],
+                swatches: [
+                    { name: 'Tortoise / Amber Lens', hex: '#b45309' },
+                    { name: 'Gloss Black / Smoke', hex: '#18181b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=800&q=80',
+                desc: 'Hand-polished thick cellulose acetate frames with gold temple engraving and UV400 scratch-resistant nylon sun lenses.'
+            },
+            {
+                id: 'as-19',
+                name: 'Minimalist Brushed Steel Automatic Chronograph',
+                brand: 'ANGKOR TIMEPIECES',
+                collection: 'accessories',
+                category: 'accessories',
+                price: 88.00,
+                origPrice: 125.00,
+                badge: '-30%',
+                badgeType: 'sale',
+                rating: 4.9,
+                sizes: ['40mm Case'],
+                swatches: [
+                    { name: 'Brushed Silver / Onyx Dial', hex: '#94a3b8' },
+                    { name: 'Royal Gold / Obsidian', hex: '#f59e0b' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
+                desc: '316L surgical stainless steel integrated bracelet watch with Angkor spire rotor engraving, sapphire crystal, and 5ATM resistance.'
+            },
+            {
+                id: 'as-20',
+                name: 'Sculpted Crescent Vegan Leather Shoulder Bag',
+                brand: 'ANGKOR ATELIER',
+                collection: 'accessories',
+                category: 'accessories',
+                price: 42.00,
+                origPrice: 58.00,
+                badge: 'NEW DROP',
+                badgeType: 'new',
+                rating: 4.9,
+                sizes: ['Medium Crescent'],
+                swatches: [
+                    { name: 'Cherry Crimson', hex: '#be123c' },
+                    { name: 'Obsidian Black', hex: '#09090b' },
+                    { name: 'Butter Cream', hex: '#fef08a' }
+                ],
+                imgPrimary: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80',
+                imgHover: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
+                imgThird: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+                desc: 'Sleek minimalist half-moon shoulder bag with adjustable gold buckle strap, magnetic zip closure, and suede-lined interior.'
+            }
+        ];
+
+        /***********************************************************************
+         * 3. STATE & BILINGUAL TRANSLATION DICTIONARY (EN / ភាសាខ្មែរ)
+         ***********************************************************************/
+        let activeCollection = 'all';
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let maxPrice = 150;
+        let sortMode = 'featured';
+        let onlySale = false;
+        let onlyWishlist = false;
+        let currentLang = 'en';
+        let currentLogoVariant = 'gold';
+
+        let wishlist = new Set(['as-1', 'as-7', 'as-12']);
+        let cart = [
+            { productId: 'as-1', size: 'L', color: 'Washed Charcoal', qty: 1 },
+            { productId: 'as-7', size: 'M', color: 'Tactical Olive', qty: 1 }
+        ];
+        let promoApplied = false;
+
+        // 3-Piece Outfit Studio State
+        let selectedOutfit = {
+            tops: 'as-1',
+            bottoms: 'as-7',
+            footwear: 'as-12'
+        };
+
+        const I18N = {
+            en: {
+                storiesHeading: 'SHOP BY STYLE EDIT & DEPARTMENT COLLECTION',
+                navBag: 'SHOPPING BAG',
+                cat_tops: 'Tops & Outerwear',
+                cat_bottoms: 'Bottoms & Cargo',
+                cat_footwear: 'Sneakers & Footwear',
+                cat_accessories: 'Bags & Accessories',
+                ctaPrimary: 'SHOP COLLECTION NOW',
+                ctaSecondary: 'COMPLETE THE LOOK (-15%)',
+                quickAdd: 'QUICK ADD',
+                bundleTitle: 'COMPLETE THE LOOK: 3-PIECE OUTFIT BUILDER'
+            },
+            kh: {
+                storiesHeading: 'ជ្រើសរើសប្រភេទម៉ូដសម្លៀកបំពាក់ និងស្បែកជើង ANGKOR SHOP',
+                navBag: 'កន្ត្រកទំនិញ',
+                cat_tops: 'អាវយឺត និងអាវក្រៅ',
+                cat_bottoms: 'ខោខូវប៊យ និងខោកាហ្គោ',
+                cat_footwear: 'ស្បែកជើងប៉ាតា',
+                cat_accessories: 'កាបូប និងគ្រឿងលម្អ',
+                ctaPrimary: 'ទិញឥឡូវនេះ',
+                ctaSecondary: 'រៀបចំឈុត ៣ មុខ (-១៥%)',
+                quickAdd: 'ដាក់ចូលកន្ត្រក',
+                bundleTitle: 'រៀបចំឈុតសម្លៀកបំពាក់ ៣ មុខ (បញ្ចុះតម្លៃ ១៥%)'
+            }
+        };
+
+        /***********************************************************************
+         * 4. INITIALIZATION & COLLECTION SWITCHER
+         ***********************************************************************/
+        function initApp() {
+            try {
+                renderCollectionStoryCircles();
+                selectCollection('all', false);
+                initOutfitBuilder();
+                renderCartDrawer();
+                updateWishlistCount();
+                startFlashTimer();
+                if (typeof setLogoVariant === 'function') setLogoVariant('gold');
+                initTelegramBot();
+            } catch (err) {
+                console.error('ANGKOR SHOP init error:', err);
+                // Still try to load outfit prices even if something else failed
+                try { initOutfitBuilder(); } catch (e2) {}
+            }
+        }
+
+        // Ensure init runs even if window.onload was already fired
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            // DOM already ready
+            setTimeout(initApp, 0);
+        }
+
+        function renderCollectionStoryCircles() {
+            const container = document.getElementById('collection-stories-bar');
+            container.innerHTML = '';
+
+            Object.values(COLLECTIONS).forEach(col => {
+                const isActive = col.id === activeCollection;
+                const label = currentLang === 'kh' ? col.nameKh : col.name;
+                const count = col.id === 'all' ? PRODUCTS.length : PRODUCTS.filter(p => p.collection === col.id).length;
+
+                const btn = document.createElement('button');
+                btn.onclick = () => selectCollection(col.id, true);
+                btn.className = `group relative rounded-2xl p-2 transition-all duration-300 flex items-center gap-2.5 text-left ${
+                    isActive ? 'studio-panel story-ring-active' : 'studio-pill hover:opacity-100'
+                }`;
+
+                btn.innerHTML = `
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden shrink-0 border-2 transition-transform group-hover:scale-105"
+                         style="border-color: ${col.accent}">
+                        <img src="${col.thumbPhoto}" alt="${label}"
+                             onerror="this.src='https://placehold.co/120x120/18181b/f59e0b?text=ANGKOR'"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <span class="text-xs font-extrabold block truncate uppercase tracking-tight">${label}</span>
+                        <span class="text-[10px] font-mono block truncate" style="color: ${col.accent}">${count} Pieces</span>
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectCollection(colKey, notify = true) {
+            const col = COLLECTIONS[colKey];
+            if (!col) return;
+            activeCollection = colKey;
+
+            // Update CSS Accent Variables
+            const root = document.documentElement;
+            root.style.setProperty('--accent', col.accent);
+            root.style.setProperty('--accent-glow', col.accentGlow);
+
+            // Update Hero Lookbook Banner
+            const heroImg = document.getElementById('hero-photo');
+            heroImg.style.opacity = '0.45';
+            setTimeout(() => {
+                heroImg.src = col.heroPhoto;
+                heroImg.style.opacity = '1';
+            }, 140);
+
+            document.getElementById('hero-tag').textContent = col.badge;
+            document.getElementById('hero-sub-pill').textContent = col.subPill;
+            document.getElementById('hero-title').textContent = currentLang === 'kh' ? col.heroTitleKh : col.heroTitle;
+            document.getElementById('hero-desc').textContent = col.heroDesc;
+            document.getElementById('active-collection-indicator').textContent = `COLLECTION: ${col.name.toUpperCase()}`;
+            document.getElementById('showing-collection-label').textContent = currentLang === 'kh' ? col.nameKh : col.name;
+
+            renderCollectionStoryCircles();
+            renderProductsGrid();
+
+            if (notify) {
+                showToast(`${col.name} Loaded`, `Showing ANGKOR SHOP lookbook for ${col.badge}.`);
+            }
+        }
+
+        /***********************************************************************
+         * 5. CUSTOM ANGKOR SHOP LOGO STUDIO (3 VARIATIONS + SVG DOWNLOAD)
+         ***********************************************************************/
+        function buildAngkorLogoSvg(variant = 'gold') {
+            const palettes = {
+                gold: {
+                    bg: '#09090b',
+                    primary: '#f59e0b',
+                    secondary: '#fde68a',
+                    textMain: '#ffffff',
+                    subText: '#f59e0b'
+                },
+                mono: {
+                    bg: '#09090b',
+                    primary: '#ffffff',
+                    secondary: '#a1a1aa',
+                    textMain: '#ffffff',
+                    subText: '#a1a1aa'
+                },
+                neon: {
+                    bg: '#09090b',
+                    primary: '#f43f5e',
+                    secondary: '#38bdf8',
+                    textMain: '#ffffff',
+                    subText: '#38bdf8'
+                }
+            };
+            const c = palettes[variant] || palettes.gold;
+
+            return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" width="100%" height="100%" fill="none">
+    <rect width="520" height="180" rx="28" fill="${c.bg}"/>
+    <g transform="translate(28, 22)">
+        <!-- Outer Geometric Lotus Diamond Crest -->
+        <rect x="8" y="8" width="120" height="120" rx="26" fill="${c.primary}" fill-opacity="0.1" stroke="${c.primary}" stroke-width="2.5"/>
+        <polygon points="68,16 120,68 68,120 16,68" stroke="${c.secondary}" stroke-width="1.75" stroke-opacity="0.45"/>
+        <!-- Center Angkor Spire -->
+        <path d="M68 24 L78 52 L84 78 L52 78 L58 52 Z" fill="${c.primary}"/>
+        <circle cx="68" cy="19" r="3.5" fill="${c.secondary}"/>
+        <!-- Left Flanking Temple Spire -->
+        <path d="M40 44 L47 64 L50 78 L30 78 L33 64 Z" fill="${c.primary}" opacity="0.88"/>
+        <circle cx="40" cy="39" r="2.5" fill="${c.secondary}"/>
+        <!-- Right Flanking Temple Spire -->
+        <path d="M96 44 L103 64 L106 78 L86 78 L89 64 Z" fill="${c.primary}" opacity="0.88"/>
+        <circle cx="96" cy="39" r="2.5" fill="${c.secondary}"/>
+        <!-- Stepped Khmer Foundation Terrace -->
+        <rect x="26" y="83" width="84" height="7" rx="3" fill="${c.primary}"/>
+        <rect x="35" y="94" width="66" height="5.5" rx="2.5" fill="${c.secondary}" opacity="0.85"/>
+        <path d="M48 104 L88 104 L78 113 L58 113 Z" fill="${c.primary}" opacity="0.65"/>
+    </g>
+    <!-- Brand Lockup Typography -->
+    <text x="176" y="82" fill="${c.textMain}" font-family="'Space Grotesk', sans-serif" font-size="44" font-weight="900" letter-spacing="-1">ANGKOR</text>
+    <rect x="372" y="48" width="112" height="42" rx="10" fill="${c.primary}"/>
+    <text x="428" y="77" fill="#09090b" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="900" letter-spacing="2">SHOP</text>
+    <!-- Subtitle -->
+    <text x="178" y="114" fill="${c.subText}" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" letter-spacing="3">PHNOM PENH • EST. 2026</text>
+    <text x="178" y="136" fill="#71717a" font-family="'Inter', sans-serif" font-size="11" font-weight="600" letter-spacing="1.5">URBAN STREETWEAR • ARCHIVE FOOTWEAR • ATELIER</text>
+</svg>`;
+        }
+
+        function openLogoModal() {
+            const modal = document.getElementById('logo-studio-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setLogoVariant(currentLogoVariant);
+        }
+
+        function closeLogoModal() {
+            const modal = document.getElementById('logo-studio-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function setLogoVariant(variant) {
+            currentLogoVariant = variant;
+            ['gold', 'mono', 'neon'].forEach(v => {
+                const btn = document.getElementById(`logo-var-${v}`);
+                if (!btn) return;
+                btn.className = v === variant
+                    ? 'p-3 rounded-2xl border text-left transition studio-panel accent-border shadow-lg'
+                    : 'p-3 rounded-2xl border text-left transition studio-pill opacity-75 hover:opacity-100';
+            });
+            const stage = document.getElementById('logo-preview-stage');
+            if (stage) {
+                stage.innerHTML = `<div class="w-full max-w-xl">${buildAngkorLogoSvg(variant)}</div>`;
+            }
+        }
+
+        function copyLogoSvgCode() {
+            const svgCode = buildAngkorLogoSvg(currentLogoVariant);
+            const temp = document.createElement('textarea');
+            temp.value = svgCode;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('SVG Logo Code Copied!', 'Paste the vector SVG markup directly into any design tool or HTML file.');
+        }
+
+        function downloadLogoSvg() {
+            const svgCode = buildAngkorLogoSvg(currentLogoVariant);
+            const blob = new Blob([svgCode], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `angkor-shop-logo-${currentLogoVariant}.svg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showToast('ANGKOR SHOP Logo Downloaded', `Saved angkor-shop-logo-${currentLogoVariant}.svg`);
+        }
+
+        /***********************************************************************
+         * 6. ANGKOR SHOP 3:4 PORTRAIT PRODUCT GRID & FILTERS
+         ***********************************************************************/
+        function renderProductsGrid() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            let filtered = PRODUCTS.filter(p => {
+                const matchCol = activeCollection === 'all' || p.collection === activeCollection;
+                const matchCat = activeCategory === 'all' || p.category === activeCategory;
+                const matchSearch = !searchQuery ||
+                    p.name.toLowerCase().includes(searchQuery) ||
+                    p.brand.toLowerCase().includes(searchQuery) ||
+                    p.category.toLowerCase().includes(searchQuery);
+                const matchPrice = p.price <= maxPrice;
+                const matchSale = !onlySale || p.badgeType === 'sale';
+                const matchWish = !onlyWishlist || wishlist.has(p.id);
+
+                return matchCol && matchCat && matchSearch && matchPrice && matchSale && matchWish;
+            });
+
+            if (sortMode === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+            if (sortMode === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+            if (sortMode === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+
+            document.getElementById('showing-count').textContent = filtered.length;
+            document.getElementById('total-count-pill').textContent = PRODUCTS.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full studio-panel rounded-3xl p-12 text-center space-y-4">
+                        <i class="ph-duotone ph-coat-hanger text-5xl accent-text"></i>
+                        <h3 class="text-xl font-bold uppercase">No Matching Fashion Pieces Found</h3>
+                        <p class="text-xs opacity-70 max-w-md mx-auto">Try resetting your filters or switching to "All Collections" above to browse all 20 items.</p>
+                        <button onclick="resetAllFilters()" class="px-5 py-2.5 rounded-xl accent-bg text-zinc-950 font-black text-xs uppercase">View All 20 Products</button>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const isWished = wishlist.has(p.id);
+                const colInfo = COLLECTIONS[p.collection];
+                const badgeBg = p.badgeType === 'sale'
+                    ? 'bg-rose-600 text-white'
+                    : (p.badgeType === 'hot' ? 'bg-amber-400 text-zinc-950' : 'accent-bg text-zinc-950');
+
+                const card = document.createElement('article');
+                card.className = 'angkor-card group rounded-2xl overflow-hidden studio-panel flex flex-col justify-between transition-all duration-300 shadow-lg hover:shadow-2xl';
+
+                card.innerHTML = `
+                    <!-- 3:4 Portrait Image Container with Hover Photo Swap -->
+                    <div class="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900 cursor-pointer" onclick="openQuickView('${p.id}')">
+                        <img src="${p.imgPrimary}" alt="${p.name}"
+                             onerror="this.src='https://placehold.co/600x800/18181b/f59e0b?text=ANGKOR+SHOP'"
+                             class="img-primary w-full h-full object-cover object-center">
+                        <img src="${p.imgHover}" alt="${p.name} secondary angle"
+                             onerror="this.src='${p.imgPrimary}'"
+                             class="img-secondary absolute inset-0 w-full h-full object-cover object-center">
+
+                        <!-- Top-Left Sale / Drop Badge -->
+                        <div class="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+                            <span class="px-2.5 py-1 rounded-md text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider shadow-md ${badgeBg}">
+                                ${p.badge}
+                            </span>
+                        </div>
+
+                        <!-- Top-Right Wishlist Heart Toggle -->
+                        <button onclick="event.stopPropagation(); toggleWishlist('${p.id}')"
+                                class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/65 backdrop-blur-md border border-white/15 flex items-center justify-center transition hover:scale-110 ${
+                                    isWished ? 'text-amber-400' : 'text-white hover:text-amber-300'
+                                }" title="Save to Wishlist">
+                            <i class="${isWished ? 'ph-fill' : 'ph-bold'} ph-heart text-lg"></i>
+                        </button>
+
+                        <!-- Slide-Up Quick Action Bar on Hover -->
+                        <div class="quick-action-bar absolute bottom-0 inset-x-0 p-2.5 bg-gradient-to-t from-black/95 via-black/80 to-transparent z-10 flex gap-2" onclick="event.stopPropagation()">
+                            <button onclick="quickAddToBag('${p.id}')"
+                                    class="flex-1 py-2.5 px-3 rounded-xl accent-bg text-zinc-950 font-black text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 hover:brightness-110 transition shadow-lg">
+                                <i class="ph-bold ph-handbag"></i>
+                                <span>${I18N[currentLang].quickAdd}</span>
+                            </button>
+                            <button onclick="openQuickView('${p.id}')"
+                                    class="py-2.5 px-3 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-bold text-[11px] uppercase transition" title="Quick View Gallery">
+                                <i class="ph-bold ph-eye text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card Metadata -->
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2.5">
+                        <div>
+                            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider opacity-70 mb-1">
+                                <span class="font-bold truncate">${p.brand}</span>
+                                <span style="color: ${colInfo.accent}">● ${colInfo.name}</span>
+                            </div>
+
+                            <h3 onclick="openQuickView('${p.id}')" class="font-bold text-xs sm:text-sm group-hover:accent-text transition line-clamp-2 cursor-pointer leading-snug">
+                                ${p.name}
+                            </h3>
+                        </div>
+
+                        <div class="space-y-2.5 pt-1">
+                            <!-- Color Swatches & Available Sizes -->
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-1.5">
+                                    ${p.swatches.map((sw, idx) => `
+                                        <span onclick="openQuickView('${p.id}')"
+                                              title="${sw.name}"
+                                              class="w-4 h-4 rounded-full cursor-pointer border ${idx === 0 ? 'border-amber-400 scale-110' : 'border-zinc-500/40'} transition hover:scale-125"
+                                              style="background-color: ${sw.hex}"></span>
+                                    `).join('')}
+                                </div>
+                                <span class="text-[10px] font-mono opacity-60 truncate">${p.sizes.slice(0, 4).join(' · ')}</span>
+                            </div>
+
+                            <!-- Price Row -->
+                            <div class="flex items-baseline justify-between pt-2 border-t border-white/10">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-base sm:text-lg font-black font-mono accent-text">$${p.price.toFixed(2)}</span>
+                                    <span class="text-xs font-mono opacity-50 line-through">$${p.origPrice.toFixed(2)}</span>
+                                </div>
+                                <span class="text-[11px] font-mono text-amber-400 flex items-center gap-0.5">
+                                    <i class="ph-fill ph-star"></i> ${p.rating.toFixed(1)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function setCategoryFilter(cat) {
+            activeCategory = cat;
+            ['all', 'tops', 'bottoms', 'footwear', 'accessories'].forEach(c => {
+                const btn = document.getElementById(`cat-btn-${c}`);
+                if (!btn) return;
+                if (c === cat) {
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider shrink-0 transition accent-bg text-zinc-950';
+                } else {
+                    btn.className = 'px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0 studio-pill';
+                }
+            });
+            renderProductsGrid();
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.trim().toLowerCase();
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (clearBtn) clearBtn.classList.toggle('hidden', !searchQuery);
+            renderProductsGrid();
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('search-input-mobile').value = '';
+            handleSearch('');
+        }
+
+        function handlePriceFilter(val) {
+            maxPrice = parseInt(val, 10);
+            document.getElementById('price-filter-label').textContent = `$${maxPrice}`;
+            renderProductsGrid();
+        }
+
+        function handleSort(val) {
+            sortMode = val;
+            renderProductsGrid();
+        }
+
+        function toggleSaleOnly() {
+            onlySale = !onlySale;
+            const btn = document.getElementById('sale-filter-btn');
+            if (onlySale) {
+                btn.className = 'px-3 py-1.5 rounded-xl text-xs font-mono bg-amber-500 text-zinc-950 font-black flex items-center gap-1.5 transition';
+            } else {
+                btn.className = 'px-3 py-1.5 rounded-xl text-xs font-mono border border-amber-500/40 bg-amber-500/10 text-amber-400 flex items-center gap-1.5 hover:bg-amber-500/20 transition';
+            }
+            renderProductsGrid();
+        }
+
+        function toggleWishlistFilter() {
+            onlyWishlist = !onlyWishlist;
+            const btn = document.getElementById('wishlist-nav-btn');
+            if (onlyWishlist) {
+                btn.classList.add('accent-border', 'bg-amber-500/20');
+                showToast('Wishlist View Active', `Showing your ${wishlist.size} saved ANGKOR SHOP pieces.`);
+            } else {
+                btn.classList.remove('accent-border', 'bg-amber-500/20');
+            }
+            renderProductsGrid();
+        }
+
+        function resetAllFilters() {
+            activeCollection = 'all';
+            activeCategory = 'all';
+            searchQuery = '';
+            maxPrice = 150;
+            onlySale = false;
+            onlyWishlist = false;
+            document.getElementById('price-slider').value = 150;
+            document.getElementById('price-filter-label').textContent = '$150';
+            clearSearch();
+            setCategoryFilter('all');
+            selectCollection('all', false);
+        }
+
+        /***********************************************************************
+         * 7. QUICK-VIEW MODAL (3 PHOTOS + SIZE GUIDE + SWATCHES)
+         ***********************************************************************/
+        let currentQvProduct = null;
+        let currentQvSize = '';
+        let currentQvColor = '';
+
+        function openQuickView(productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p) return;
+            currentQvProduct = p;
+            currentQvSize = p.sizes[0];
+            currentQvColor = p.swatches[0].name;
+
+            document.getElementById('qv-main-img').src = p.imgPrimary;
+            document.getElementById('qv-badge').textContent = p.badge;
+            document.getElementById('qv-brand').textContent = `${p.brand} • ${COLLECTIONS[p.collection].name.toUpperCase()}`;
+            document.getElementById('qv-title').textContent = p.name;
+            document.getElementById('qv-price').textContent = `$${p.price.toFixed(2)}`;
+            document.getElementById('qv-orig-price').textContent = `$${p.origPrice.toFixed(2)}`;
+            document.getElementById('qv-desc').textContent = p.desc;
+            document.getElementById('qv-color-name').textContent = currentQvColor;
+
+            // Render 3 Gallery Thumbnails
+            const photos = [p.imgPrimary, p.imgHover, p.imgThird];
+            document.getElementById('qv-thumbs').innerHTML = photos.map((url, i) => `
+                <button onclick="swapQvPhoto('${url}', this)" class="aspect-[4/3] rounded-xl overflow-hidden border-2 ${i === 0 ? 'accent-border' : 'border-white/15'}">
+                    <img src="${url}" alt="Angle ${i + 1}" class="w-full h-full object-cover">
+                </button>
+            `).join('');
+
+            // Render Swatches
+            document.getElementById('qv-swatches').innerHTML = p.swatches.map((sw, i) => `
+                <button onclick="selectQvColor('${sw.name}', this)"
+                        class="w-7 h-7 rounded-full border-2 ${i === 0 ? 'border-amber-400 scale-110' : 'border-zinc-500/40'} transition"
+                        style="background-color: ${sw.hex}" title="${sw.name}"></button>
+            `).join('');
+
+            // Render Size Pills
+            document.getElementById('qv-sizes').innerHTML = p.sizes.map((sz, i) => `
+                <button onclick="selectQvSize('${sz}', this)"
+                        class="px-3.5 py-2 rounded-xl text-xs font-mono font-bold border transition ${
+                            i === 0 ? 'accent-bg text-zinc-950 border-transparent' : 'studio-pill'
+                        }">${sz}</button>
+            `).join('');
+
+            document.getElementById('qv-add-btn').onclick = () => {
+                addItemToCart(p.id, currentQvSize, currentQvColor, 1);
+                closeQuickView();
+            };
+
+            const modal = document.getElementById('quick-view-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function swapQvPhoto(url, btnEl) {
+            document.getElementById('qv-main-img').src = url;
+            Array.from(btnEl.parentElement.children).forEach(c => c.classList.remove('accent-border'));
+            btnEl.classList.add('accent-border');
+        }
+
+        function selectQvColor(name, btnEl) {
+            currentQvColor = name;
+            document.getElementById('qv-color-name').textContent = name;
+            Array.from(btnEl.parentElement.children).forEach(c => c.classList.remove('border-amber-400', 'scale-110'));
+            btnEl.classList.add('border-amber-400', 'scale-110');
+        }
+
+        function selectQvSize(size, btnEl) {
+            currentQvSize = size;
+            Array.from(btnEl.parentElement.children).forEach(c => {
+                c.className = 'px-3.5 py-2 rounded-xl text-xs font-mono font-bold border transition studio-pill';
+            });
+            btnEl.className = 'px-3.5 py-2 rounded-xl text-xs font-mono font-bold border transition accent-bg text-zinc-950 border-transparent';
+        }
+
+        function toggleSizeGuide() {
+            document.getElementById('qv-size-guide').classList.toggle('hidden');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quick-view-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function toggleWishlist(productId) {
+            if (wishlist.has(productId)) {
+                wishlist.delete(productId);
+                showToast('Removed from Wishlist', 'Item removed from your saved list.');
+            } else {
+                wishlist.add(productId);
+                showToast('Saved to Wishlist', 'Item saved to your ANGKOR SHOP wishlist.');
+            }
+            updateWishlistCount();
+            renderProductsGrid();
+        }
+
+        function updateWishlistCount() {
+            document.getElementById('wishlist-count').textContent = wishlist.size;
+        }
+
+        /***********************************************************************
+         * 8. "COMPLETE THE LOOK" 3-PIECE OUTFIT BUILDER STUDIO (-15%)
+         ***********************************************************************/
+        function initOutfitBuilder() {
+            renderOutfitStep('tops', 'bundle-step-tops');
+            renderOutfitStep('bottoms', 'bundle-step-bottoms');
+            renderOutfitStep('footwear', 'bundle-step-footwear');
+            updateOutfitSummary();
+        }
+
+        function renderOutfitStep(categoryKey, containerId) {
+            const items = PRODUCTS.filter(p => p.category === categoryKey).slice(0, 3);
+            const container = document.getElementById(containerId);
+            container.innerHTML = items.map(item => {
+                const isSelected = selectedOutfit[categoryKey] === item.id;
+                return `
+                    <button onclick="selectOutfitOption('${categoryKey}', '${item.id}')"
+                            class="p-2.5 rounded-2xl border text-left transition flex items-center gap-2.5 ${
+                                isSelected ? 'studio-panel accent-border shadow-lg' : 'studio-pill opacity-80 hover:opacity-100'
+                            }">
+                        <img src="${item.imgPrimary}" alt="${item.name}" class="w-12 h-14 rounded-xl object-cover shrink-0">
+                        <div class="min-w-0">
+                            <span class="text-xs font-bold block truncate">${item.name}</span>
+                            <span class="text-xs font-mono accent-text font-bold">$${item.price.toFixed(2)}</span>
+                        </div>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectOutfitOption(categoryKey, productId) {
+            selectedOutfit[categoryKey] = productId;
+            initOutfitBuilder();
+        }
+
+        function updateOutfitSummary() {
+            const p1 = PRODUCTS.find(p => p.id === selectedOutfit.tops);
+            const p2 = PRODUCTS.find(p => p.id === selectedOutfit.bottoms);
+            const p3 = PRODUCTS.find(p => p.id === selectedOutfit.footwear);
+            if (!p1 || !p2 || !p3) return;
+
+            const setImg = (id, url, fallbackText) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.onerror = function () {
+                    this.onerror = null;
+                    this.src = `https://placehold.co/400x500/18181b/f59e0b?text=${encodeURIComponent(fallbackText)}`;
+                };
+                el.src = url || `https://placehold.co/400x500/18181b/f59e0b?text=${encodeURIComponent(fallbackText)}`;
+            };
+
+            setImg('bundle-img-1', p1.imgPrimary, 'TOP');
+            document.getElementById('bundle-name-1').textContent = p1.name;
+            setImg('bundle-img-2', p2.imgPrimary, 'BOTTOM');
+            document.getElementById('bundle-name-2').textContent = p2.name;
+            setImg('bundle-img-3', p3.imgPrimary, 'SHOES');
+            document.getElementById('bundle-name-3').textContent = p3.name;
+
+            const origTotal = p1.price + p2.price + p3.price;
+            const discount = origTotal * 0.15;
+            const finalPrice = origTotal - discount;
+
+            document.getElementById('bundle-orig-price').textContent = `$${origTotal.toFixed(2)}`;
+            document.getElementById('bundle-discount-val').textContent = `-$${discount.toFixed(2)}`;
+            document.getElementById('bundle-final-price').textContent = `$${finalPrice.toFixed(2)}`;
+        }
+
+        function addCustomOutfitToCart() {
+            ['tops', 'bottoms', 'footwear'].forEach(k => {
+                const p = PRODUCTS.find(item => item.id === selectedOutfit[k]);
+                if (p) addItemToCart(p.id, p.sizes[1] || p.sizes[0], p.swatches[0].name, 1, false);
+            });
+            toggleCartDrawer(true);
+            showToast('3-Piece Outfit Added!', 'Your complete ANGKOR SHOP look has been added to your bag.');
+        }
+
+        /***********************************************************************
+         * 9. SHOPPING BAG DRAWER, PROMO CODE (ANGKOR20) & CHECKOUT
+         ***********************************************************************/
+        function quickAddToBag(productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p) return;
+            addItemToCart(p.id, p.sizes[1] || p.sizes[0], p.swatches[0].name, 1, true);
+        }
+
+        function addItemToCart(productId, size, color, qty = 1, openDrawer = true) {
+            const existing = cart.find(item => item.productId === productId && item.size === size && item.color === color);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ productId, size, color, qty });
+            }
+            renderCartDrawer();
+            if (openDrawer) toggleCartDrawer(true);
+            const p = PRODUCTS.find(item => item.id === productId);
+            showToast('Added to Bag', `${p.name} (${size}) added to your bag.`);
+        }
+
+        function updateCartQty(idx, delta) {
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) cart.splice(idx, 1);
+            renderCartDrawer();
+        }
+
+        function renderCartDrawer() {
+            const list = document.getElementById('cart-items-list');
+            let totalItems = 0;
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div class="h-64 flex flex-col items-center justify-center text-center space-y-3 opacity-60">
+                        <i class="ph-duotone ph-handbag text-5xl accent-text"></i>
+                        <p class="text-sm font-bold uppercase">Your Shopping Bag is Empty</p>
+                        <p class="text-xs max-w-xs">Add oversized hoodies, cargo pants, sneakers, or complete outfits to get started.</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = cart.map((item, idx) => {
+                    const p = PRODUCTS.find(prod => prod.id === item.productId);
+                    if (!p) return '';
+                    totalItems += item.qty;
+                    subtotal += p.price * item.qty;
+
+                    return `
+                        <div class="p-3 rounded-2xl studio-pill flex gap-3 items-center">
+                            <img src="${p.imgPrimary}" alt="${p.name}" class="w-16 h-20 rounded-xl object-cover shrink-0">
+                            <div class="flex-1 min-w-0">
+                                <span class="text-[10px] font-mono accent-text uppercase block">${p.brand}</span>
+                                <h4 class="text-xs font-bold truncate">${p.name}</h4>
+                                <span class="text-[11px] font-mono opacity-60 block">${item.color} • Size: ${item.size}</span>
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-sm font-mono font-black">$${(p.price * item.qty).toFixed(2)}</span>
+                                    <div class="flex items-center gap-2 studio-pill rounded-lg px-2 py-0.5">
+                                        <button onclick="updateCartQty(${idx}, -1)" class="opacity-75 hover:opacity-100">-</button>
+                                        <span class="text-xs font-mono font-bold">${item.qty}</span>
+                                        <button onclick="updateCartQty(${idx}, 1)" class="opacity-75 hover:opacity-100">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('cart-badge').textContent = totalItems;
+            document.getElementById('drawer-item-count').textContent = totalItems;
+
+            // Free Express Shipping Bar ($60 threshold)
+            const freeThresh = 60;
+            const pct = Math.min(100, Math.round((subtotal / freeThresh) * 100));
+            document.getElementById('shipping-bar').style.width = `${pct}%`;
+            document.getElementById('shipping-pct').textContent = `${pct}%`;
+            document.getElementById('shipping-status-msg').textContent = subtotal >= freeThresh
+                ? 'UNLOCKED: FREE Phnom Penh Express Courier!'
+                : `Add $${(freeThresh - subtotal).toFixed(2)} more for FREE Express Delivery`;
+
+            const discount = promoApplied ? subtotal * 0.20 : 0;
+            const finalTotal = subtotal - discount;
+
+            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            const discRow = document.getElementById('cart-discount-row');
+            if (promoApplied && subtotal > 0) {
+                discRow.classList.remove('hidden');
+                discRow.classList.add('flex');
+                document.getElementById('cart-discount-val').textContent = `-$${discount.toFixed(2)}`;
+            } else {
+                discRow.classList.add('hidden');
+            }
+            document.getElementById('cart-total').textContent = `$${finalTotal.toFixed(2)}`;
+        }
+
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-drawer-backdrop');
+            if (open) {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.add('opacity-100'), 10);
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.remove('opacity-100');
+                drawer.classList.add('translate-x-full');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            }
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promo-input').value.trim().toUpperCase();
+            if (input === 'ANGKOR20') {
+                promoApplied = true;
+                renderCartDrawer();
+                showToast('Code ANGKOR20 Applied!', '20% VIP Member discount activated on your bag.');
+            } else {
+                showToast('Invalid Promo Code', 'Use code ANGKOR20 for 20% off your order.');
+            }
+        }
+
+        function copyPromoCode() {
+            const temp = document.createElement('textarea');
+            temp.value = 'ANGKOR20';
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            document.getElementById('promo-input').value = 'ANGKOR20';
+            showToast('Code ANGKOR20 Copied!', 'Paste or click Apply inside your shopping bag.');
+        }
+
+        function completeCheckout() {
+            if (cart.length === 0) {
+                showToast('Bag is Empty', 'Add fashion items to your bag before checkout.');
+                return;
+            }
+            // Create demo order for tracking BEFORE clearing cart
+            const order = createDemoOrder();
+            cart = [];
+            promoApplied = false;
+            renderCartDrawer();
+            toggleCartDrawer(false);
+            showToast(`Order Confirmed! #${order.id}`, 'Your ANGKOR SHOP express package is being prepared. Track it in the chatbot.');
+            // Also notify in chatbot if open
+            if (tgBotOpen) {
+                setTimeout(() => {
+                    appendBotMessage(
+                        `✅ <strong>Order placed successfully!</strong><br>Order ID: <strong>${order.id}</strong><br>Status: <strong>${order.status}</strong>`,
+                        [{ label: '🚚 Track This Order', action: "triggerBotCommand('track_order')" }]
+                    );
+                }, 400);
+            }
+        }
+
+        /***********************************************************************
+         * 9B. INTERACTIVE TELEGRAM CHATBOT & ORDER CONCIERGE
+         * Official Owner Info:
+         * - Phone / Telegram: 096 796 2929 (+855967962929)
+         * - Email: nguonsomeas7799@gmail.com
+         ***********************************************************************/
+        const OWNER_PHONE = '0967962929';
+        const OWNER_PHONE_DISPLAY = '096 796 2929';
+        const OWNER_TG_LINK = 'https://t.me/+855967962929';
+        const OWNER_EMAIL = 'nguonsomeas7799@gmail.com';
+
+        let tgBotOpen = false;
+        let tgBotToken = localStorage.getItem('angkor_tg_token') || '';
+        let tgChatId = localStorage.getItem('angkor_tg_chatid') || '';
+        let chatHistory = []; // { type: 'user'|'bot', text: string, time: string, buttons?: [] }
+
+        // Simulated order tracking store (demo)
+        let demoOrders = JSON.parse(localStorage.getItem('angkor_demo_orders') || '[]');
+
+        function saveChatHistory() {
+            try {
+                // Keep last 40 messages only
+                const trimmed = chatHistory.slice(-40);
+                localStorage.setItem('angkor_chat_history', JSON.stringify(trimmed));
+            } catch (e) {}
+        }
+
+        function loadChatHistory() {
+            try {
+                const raw = localStorage.getItem('angkor_chat_history');
+                if (raw) chatHistory = JSON.parse(raw);
+            } catch (e) {
+                chatHistory = [];
+            }
+        }
+
+        function clearChatHistory() {
+            chatHistory = [];
+            saveChatHistory();
+            const feed = document.getElementById('tg-chat-messages');
+            if (feed) feed.innerHTML = '';
+            appendBotMessage(`🗑️ <strong>Chat cleared.</strong><br>How can I help you today?`, [
+                { label: '📦 Send My Order', action: "triggerBotCommand('send_cart')" },
+                { label: '🚚 Track Order', action: "triggerBotCommand('track_order')" },
+                { label: '🔥 Best Sellers', action: "triggerBotCommand('bestsellers')" }
+            ]);
+            showToast('Chat Cleared', 'Conversation history has been reset.');
+        }
+
+        function initTelegramBot() {
+            const feed = document.getElementById('tg-chat-messages');
+            if (!feed) return;
+            feed.innerHTML = '';
+
+            // Sync saved Bot Token & Chat ID if present
+            const tokenInput = document.getElementById('modal-tg-token');
+            const chatInput = document.getElementById('modal-tg-chatid');
+            if (tokenInput) tokenInput.value = tgBotToken;
+            if (chatInput) chatInput.value = tgChatId;
+            updateTelegramStatusUI();
+
+            // Restore previous chat history
+            loadChatHistory();
+            if (chatHistory.length > 0) {
+                chatHistory.forEach(msg => {
+                    if (msg.type === 'user') {
+                        renderUserMessage(msg.text, msg.time, false);
+                    } else {
+                        renderBotMessage(msg.text, msg.buttons || [], msg.time, false);
+                    }
+                });
+                feed.scrollTop = feed.scrollHeight;
+            } else {
+                appendBotMessage(`👋 <strong>Welcome to ANGKOR SHOP Telegram Bot!</strong><br>📞 Tel / Telegram: <a href="tel:${OWNER_PHONE}" class="underline text-amber-400 font-bold">${OWNER_PHONE_DISPLAY}</a><br>✉️ Email: <a href="mailto:${OWNER_EMAIL}" class="underline text-amber-400 font-bold">${OWNER_EMAIL}</a>`, [
+                    { label: '📦 Send My Order to Telegram', action: "triggerBotCommand('send_cart')" },
+                    { label: '🚚 Track My Order', action: "triggerBotCommand('track_order')" },
+                    { label: '🔥 View Top Sellers', action: "triggerBotCommand('bestsellers')" }
+                ]);
+            }
+        }
+
+        function updateTelegramStatusUI() {
+            const badge = document.getElementById('tg-connection-badge');
+            const headerStatus = document.getElementById('tg-header-status');
+            const sub = document.getElementById('tg-bot-subtitle');
+            if (tgBotToken && tgChatId) {
+                if (badge) {
+                    badge.textContent = '● LIVE BOT API CONNECTED';
+                    badge.className = 'px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[10px] font-bold';
+                }
+                if (headerStatus) headerStatus.textContent = 'BOT CONNECTED ✓';
+                if (sub) sub.textContent = 'Live Telegram Bot API Connected ✓';
+            }
+        }
+
+        // Bot setup UI removed — Telegram is already connected
+        function openTelegramSetupModal() { /* removed */ }
+        function closeTelegramSetupModal() { /* removed */ }
+
+        function toggleTelegramBot(forceState) {
+            const win = document.getElementById('tg-bot-window');
+            tgBotOpen = typeof forceState === 'boolean' ? forceState : !tgBotOpen;
+            if (tgBotOpen) {
+                win.classList.remove('hidden');
+                win.classList.add('flex');
+                setTimeout(() => {
+                    const input = document.getElementById('tg-user-input');
+                    if (input) input.focus();
+                }, 120);
+            } else {
+                win.classList.add('hidden');
+                win.classList.remove('flex');
+            }
+        }
+
+        function renderUserMessage(text, time, scroll = true) {
+            const feed = document.getElementById('tg-chat-messages');
+            if (!feed) return;
+            const div = document.createElement('div');
+            div.className = 'flex justify-end';
+            div.innerHTML = `
+                <div class="max-w-[82%] rounded-2xl rounded-br-sm bg-[#2AABEE] text-white px-3.5 py-2.5 shadow-md">
+                    <p class="leading-relaxed break-words">${escapeHtml(text)}</p>
+                    <span class="text-[9px] font-mono text-white/80 block text-right mt-1">${time} ✓✓</span>
+                </div>
+            `;
+            feed.appendChild(div);
+            if (scroll) feed.scrollTop = feed.scrollHeight;
+        }
+
+        function renderBotMessage(htmlContent, actionButtons = [], time, scroll = true) {
+            const feed = document.getElementById('tg-chat-messages');
+            if (!feed) return;
+            const div = document.createElement('div');
+            div.className = 'flex items-start gap-2';
+
+            const buttonsHtml = actionButtons.length > 0
+                ? `<div class="mt-2.5 space-y-1.5 border-t border-white/10 pt-2">
+                    ${actionButtons.map(btn => {
+                        if (btn.href) {
+                            return `<a href="${btn.href}" target="${btn.target || '_blank'}" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-xl bg-[#2AABEE]/20 hover:bg-[#2AABEE]/35 border border-[#2AABEE]/40 text-[#2AABEE] font-mono text-[11px] font-bold flex items-center justify-between transition">
+                                <span>${btn.label}</span>
+                                <i class="ph-bold ph-arrow-up-right"></i>
+                            </a>`;
+                        }
+                        return `<button onclick="${btn.action}" class="w-full py-2 px-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-mono text-[11px] font-bold flex items-center justify-between transition text-left">
+                            <span>${btn.label}</span>
+                            <i class="ph-bold ph-caret-right text-amber-400"></i>
+                        </button>`;
+                    }).join('')}
+                   </div>`
+                : '';
+
+            div.innerHTML = `
+                <div class="w-7 h-7 rounded-full bg-[#2AABEE] text-white flex items-center justify-center shrink-0 mt-1 shadow">
+                    <i class="ph-fill ph-telegram-logo text-sm"></i>
+                </div>
+                <div class="max-w-[85%] rounded-2xl rounded-tl-sm bg-zinc-900/95 text-zinc-100 border border-white/10 px-3.5 py-2.5 shadow-md">
+                    <div class="leading-relaxed space-y-1">${htmlContent}</div>
+                    ${buttonsHtml}
+                    <span class="text-[9px] font-mono text-zinc-400 block text-right mt-1">${time} • @AngkorShopBot</span>
+                </div>
+            `;
+            feed.appendChild(div);
+            if (scroll) feed.scrollTop = feed.scrollHeight;
+        }
+
+        function appendUserMessage(text) {
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            renderUserMessage(text, time, true);
+            chatHistory.push({ type: 'user', text, time });
+            saveChatHistory();
+        }
+
+        function appendBotMessage(htmlContent, actionButtons = []) {
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            renderBotMessage(htmlContent, actionButtons, time, true);
+            // Store a simplified version (buttons as serializable objects)
+            const safeButtons = (actionButtons || []).map(b => ({
+                label: b.label,
+                action: b.action || null,
+                href: b.href || null,
+                target: b.target || null
+            }));
+            chatHistory.push({ type: 'bot', text: htmlContent, time, buttons: safeButtons });
+            saveChatHistory();
+        }
+
+        function buildOrderSummaryText() {
+            if (cart.length === 0) {
+                return `Hello ANGKOR SHOP (${OWNER_PHONE_DISPLAY})! I would like to inquire about ordering from your FW26 collection.`;
+            }
+            let subtotal = 0;
+            const lines = cart.map((item, i) => {
+                const p = PRODUCTS.find(prod => prod.id === item.productId);
+                if (!p) return '';
+                const lineTotal = p.price * item.qty;
+                subtotal += lineTotal;
+                return `${i + 1}. ${p.name} (${item.color}, Size: ${item.size}) x${item.qty} = $${lineTotal.toFixed(2)}`;
+            });
+            const discount = promoApplied ? subtotal * 0.20 : 0;
+            const finalTotal = subtotal - discount;
+            return [
+                `🛍️ NEW ORDER — ANGKOR SHOP`,
+                `--------------------------`,
+                ...lines,
+                `--------------------------`,
+                `Subtotal: $${subtotal.toFixed(2)}`,
+                promoApplied ? `Promo (ANGKOR20 -20%): -$${discount.toFixed(2)}` : null,
+                `TOTAL: $${finalTotal.toFixed(2)}`,
+                `Customer Contact via Web Bot • Tel: ${OWNER_PHONE_DISPLAY}`
+            ].filter(Boolean).join('\n');
+        }
+
+        async function forwardToLiveTelegramWebhook(textMessage) {
+            if (!tgBotToken || !tgChatId) return false;
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${tgBotToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: tgChatId,
+                        text: textMessage
+                    })
+                });
+                const data = await res.json();
+                return Boolean(data && data.ok);
+            } catch (err) {
+                return false;
+            }
+        }
+
+        function triggerBotCommand(cmd) {
+            if (!tgBotOpen) toggleTelegramBot(true);
+
+            if (cmd === 'send_cart') {
+                appendUserMessage('📦 Send my shopping bag to Telegram (096 796 2929)');
+                const summary = buildOrderSummaryText();
+                const encodedText = encodeURIComponent(summary);
+                const tgDeepLink = `https://t.me/+855967962929?text=${encodedText}`;
+                const mailDeepLink = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent('ANGKOR SHOP Order - ' + OWNER_PHONE_DISPLAY)}&body=${encodedText}`;
+
+                forwardToLiveTelegramWebhook(summary);
+
+                setTimeout(() => {
+                    appendBotMessage(
+                        `✅ <strong>Your ANGKOR SHOP Order Summary is Ready!</strong><br><pre class="mt-1.5 p-2 rounded-lg bg-black/50 text-[10px] font-mono whitespace-pre-wrap text-amber-300 border border-white/10">${escapeHtml(summary)}</pre>`,
+                        [
+                            { label: '🚀 Send Order on Telegram (+855 96 796 2929)', href: tgDeepLink },
+                            { label: '✉️ Send Order via Email (nguonsomeas7799@gmail.com)', href: mailDeepLink, target: '_self' },
+                            { label: '📋 Copy Order Text', action: 'copyOrderSummaryToClipboard()' }
+                        ]
+                    );
+                }, 220);
+                return;
+            }
+
+            if (cmd === 'bestsellers') {
+                appendUserMessage('🔥 Show me your best sellers');
+                setTimeout(() => {
+                    appendBotMessage(
+                        `🔥 <strong>Top 3 ANGKOR SHOP Best Sellers Right Now:</strong><br>1. <strong>480GSM Acid-Wash Hoodie</strong> ($44.00)<br>2. <strong>8-Pocket Parachute Cargo Pants</strong> ($48.00)<br>3. <strong>Aero-Mesh 2000s Retro Runners</strong> ($79.00)`,
+                        [
+                            { label: '➕ Add 480GSM Hoodie ($44)', action: "quickAddToBag('as-1')" },
+                            { label: '➕ Add Parachute Cargo ($48)', action: "quickAddToBag('as-7')" },
+                            { label: '➕ Add Retro Runners ($79)', action: "quickAddToBag('as-12')" }
+                        ]
+                    );
+                }, 220);
+                return;
+            }
+
+            if (cmd === 'size_help') {
+                appendUserMessage('📏 Help me choose my size');
+                setTimeout(() => {
+                    appendBotMessage(
+                        `📏 <strong>ANGKOR SHOP Boxy Fit Size Guide:</strong><br>• <strong>Size S:</strong> 158–166cm (48–58kg)<br>• <strong>Size M:</strong> 167–174cm (59–68kg)<br>• <strong>Size L:</strong> 175–181cm (69–78kg)<br>• <strong>Size XL:</strong> 182–190cm (79–92kg)<br><br>Need personal sizing advice? Message us directly on Telegram at <strong>${OWNER_PHONE_DISPLAY}</strong>!`,
+                        [
+                            { label: '💬 Ask Stylist on Telegram', href: OWNER_TG_LINK }
+                        ]
+                    );
+                }, 220);
+                return;
+            }
+
+            if (cmd === 'promo') {
+                appendUserMessage('🎟️ Do you have a VIP discount code?');
+                setTimeout(() => {
+                    promoApplied = true;
+                    renderCartDrawer();
+                    appendBotMessage(
+                        `🎉 <strong>VIP Code Activated: ANGKOR20</strong><br>I have automatically applied <strong>20% OFF</strong> to your shopping bag!`,
+                        [
+                            { label: '🛍️ View My Shopping Bag (-20%)', action: 'toggleCartDrawer(true)' }
+                        ]
+                    );
+                }, 220);
+                return;
+            }
+
+            if (cmd === 'contact') {
+                appendUserMessage('📞 How can I contact the store owner?');
+                setTimeout(() => {
+                    appendBotMessage(
+                        `📞 <strong>ANGKOR SHOP Official Direct Contact:</strong><br>• <strong>Phone / Telegram:</strong> <a href="tel:${OWNER_PHONE}" class="text-amber-400 underline font-bold">${OWNER_PHONE_DISPLAY}</a><br>• <strong>Telegram Link:</strong> <a href="${OWNER_TG_LINK}" target="_blank" class="text-[#2AABEE] underline font-bold">t.me/+855967962929</a><br>• <strong>Email:</strong> <a href="mailto:${OWNER_EMAIL}" class="text-amber-400 underline font-bold">${OWNER_EMAIL}</a>`,
+                        [
+                            { label: '📞 Call 096 796 2929 Now', href: `tel:${OWNER_PHONE}`, target: '_self' },
+                            { label: '✈️ Open Telegram (+855 96 796 2929)', href: OWNER_TG_LINK },
+                            { label: '✉️ Email nguonsomeas7799@gmail.com', href: `mailto:${OWNER_EMAIL}`, target: '_self' }
+                        ]
+                    );
+                }, 220);
+                return;
+            }
+
+            if (cmd === 'track_order') {
+                appendUserMessage('🚚 Track my order status');
+                setTimeout(() => {
+                    showOrderTracking();
+                }, 220);
+                return;
+            }
+        }
+
+        function createDemoOrder() {
+            const orderId = 'ANGKOR-' + Date.now().toString().slice(-8);
+            const statuses = ['Order Confirmed', 'Preparing Package', 'Out for Delivery', 'Delivered'];
+            // Random progress for demo
+            const progress = Math.floor(Math.random() * 3); // 0-2 so not always delivered
+            const order = {
+                id: orderId,
+                createdAt: new Date().toISOString(),
+                statusIndex: progress,
+                status: statuses[progress],
+                items: cart.map(item => {
+                    const p = PRODUCTS.find(prod => prod.id === item.productId);
+                    return p ? `${p.name} (${item.size}) x${item.qty}` : item.productId;
+                }),
+                total: document.getElementById('cart-total')?.textContent || '$0.00'
+            };
+            demoOrders.unshift(order);
+            demoOrders = demoOrders.slice(0, 10); // keep last 10
+            try {
+                localStorage.setItem('angkor_demo_orders', JSON.stringify(demoOrders));
+            } catch (e) {}
+            return order;
+        }
+
+        function showOrderTracking() {
+            const isKhmer = currentLang === 'kh';
+            if (demoOrders.length === 0) {
+                appendBotMessage(
+                    isKhmer
+                        ? `📦 <strong>មិនទាន់មានការបញ្ជាទិញទេ</strong><br>សូមបញ្ជាទិញជាមុនសិន បន្ទាប់មកអ្នកអាចតាមដានស្ថានភាពបាន។`
+                        : `📦 <strong>No orders found yet</strong><br>Place an order first (checkout or send bag to Telegram), then you can track its status here.`,
+                    [
+                        { label: isKhmer ? '🛍️ មើលកន្ត្រក' : '🛍️ View Shopping Bag', action: 'toggleCartDrawer(true)' },
+                        { label: isKhmer ? '🔥 ផលិតផលលក់ដាច់' : '🔥 Best Sellers', action: "triggerBotCommand('bestsellers')" }
+                    ]
+                );
+                return;
+            }
+
+            const latest = demoOrders[0];
+            const steps = ['Order Confirmed', 'Preparing Package', 'Out for Delivery', 'Delivered'];
+            const stepIcons = ['✅', '📦', '🛵', '🏠'];
+            let timeline = steps.map((s, i) => {
+                const done = i <= latest.statusIndex;
+                const current = i === latest.statusIndex;
+                return `${stepIcons[i]} ${done ? '<strong>' : ''}${s}${done ? '</strong>' : ''}${current ? ' ← <span class="text-amber-400">Now</span>' : ''}`;
+            }).join('<br>');
+
+            const itemsList = (latest.items || []).slice(0, 4).map(i => `• ${i}`).join('<br>');
+
+            appendBotMessage(
+                `🚚 <strong>Order Tracking — ${latest.id}</strong><br>` +
+                `<span class="text-[10px] opacity-70">Placed: ${new Date(latest.createdAt).toLocaleString()}</span><br><br>` +
+                `${timeline}<br><br>` +
+                `<strong>Items:</strong><br>${itemsList || '—'}<br>` +
+                `<strong>Total:</strong> ${latest.total}<br><br>` +
+                `Need help? Contact <strong>${OWNER_PHONE_DISPLAY}</strong>`,
+                [
+                    { label: '📞 Call Store', href: `tel:${OWNER_PHONE}`, target: '_self' },
+                    { label: '✈️ Open Telegram', href: OWNER_TG_LINK },
+                    { label: '🔄 Refresh Status', action: "triggerBotCommand('track_order')" }
+                ]
+            );
+        }
+
+        function handleTelegramUserSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('tg-user-input');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+
+            appendUserMessage(text);
+            forwardToLiveTelegramWebhook(`Customer Web Chat: ${text}`);
+
+            // Smarter auto-reply engine (EN + Khmer)
+            setTimeout(() => {
+                processBotAutoReply(text);
+            }, 320);
+        }
+
+        function processBotAutoReply(text) {
+            const lower = text.toLowerCase().trim();
+            const isKhmer = /[\u1780-\u17FF]/.test(text);
+
+            // 1. Greetings
+            if (/^(hi|hello|hey|hola|សួស្តី|ជំរាបសួរ|សួស្ដី|hi bot|hello bot)/i.test(lower) || lower === 'start') {
+                appendBotMessage(
+                    isKhmer
+                        ? `👋 <strong>សួស្តី! សូមស្វាគមន៍មកកាន់ ANGKOR SHOP</strong><br>ខ្ញុំជា Bot របស់ហាង។ ខ្ញុំអាចជួយអ្នករកផលិតផល តម្លៃ ទំហំ តាមដានការបញ្ជាទិញ ឬបញ្ជាទិញ។`
+                        : `👋 <strong>Hello! Welcome to ANGKOR SHOP</strong><br>I'm the official store bot. I can help with products, prices, sizes, order tracking, promo codes, or placing an order.`,
+                    [
+                        { label: isKhmer ? '🔥 ផលិតផលលក់ដាច់' : '🔥 Best Sellers', action: "triggerBotCommand('bestsellers')" },
+                        { label: isKhmer ? '🚚 តាមដានការបញ្ជាទិញ' : '🚚 Track Order', action: "triggerBotCommand('track_order')" },
+                        { label: isKhmer ? '🎟️ បញ្ចុះតម្លៃ 20%' : '🎟️ Get 20% Code', action: "triggerBotCommand('promo')" },
+                        { label: isKhmer ? '📞 ទំនាក់ទំនង' : '📞 Contact Owner', action: "triggerBotCommand('contact')" }
+                    ]
+                );
+                return;
+            }
+
+            // 2. Price
+            if (lower.includes('price') || lower.includes('តម្លៃ') || lower.includes('how much') || lower.includes('cost') || lower.includes('ថ្លៃ') || lower.includes('ប៉ុន្មាន')) {
+                appendBotMessage(
+                    isKhmer
+                        ? `💰 <strong>តម្លៃ ANGKOR SHOP:</strong><br>• អាវយឺត: ចាប់ពី <strong>$26</strong><br>• អាវហ៊ូឌី & ខោកាហ្គោ: <strong>$44–$48</strong><br>• ស្បែកជើង: <strong>$64–$79</strong><br><br>ប្រើកូដ <strong>ANGKOR20</strong> ដើម្បីទទួលបាន <strong>បញ្ចុះតម្លៃ 20%</strong>!`
+                        : `💰 <strong>ANGKOR SHOP Price Guide:</strong><br>• Tees start at <strong>$26</strong><br>• Hoodies & Cargos: <strong>$44–$48</strong><br>• Sneakers: <strong>$64–$79</strong><br><br>Use code <strong>ANGKOR20</strong> for <strong>20% OFF</strong>!`,
+                    [{ label: isKhmer ? '🎟️ អនុវត្ត 20% ឥឡូវ' : '🎟️ Auto-Apply 20% Off', action: "triggerBotCommand('promo')" }]
+                );
+                return;
+            }
+
+            // 3. Size / Fit
+            if (lower.includes('size') || lower.includes('ទំហំ') || lower.includes('fit') || lower.includes('sizing') || lower.includes('ខ្នាត')) {
+                triggerBotCommand('size_help');
+                return;
+            }
+
+            // 4. Order / Buy / Cart
+            if (lower.includes('order') || lower.includes('buy') || lower.includes('ទិញ') || lower.includes('cart') || lower.includes('bag') || lower.includes('កន្ត្រក') || lower.includes('បញ្ជាទិញ')) {
+                triggerBotCommand('send_cart');
+                return;
+            }
+
+            // 5. Contact
+            if (lower.includes('phone') || lower.includes('number') || lower.includes('call') || lower.includes('email') || lower.includes('telegram') || lower.includes('លេខ') || lower.includes('ទំនាក់ទំនង') || lower.includes('contact') || lower.includes('owner')) {
+                triggerBotCommand('contact');
+                return;
+            }
+
+            // 6. Promo / Discount
+            if (lower.includes('promo') || lower.includes('discount') || lower.includes('code') || lower.includes('sale') || lower.includes('បញ្ចុះ') || lower.includes('កូដ') || lower.includes('angkor20')) {
+                triggerBotCommand('promo');
+                return;
+            }
+
+            // 7. Best sellers
+            if (lower.includes('best') || lower.includes('popular') || lower.includes('hot') || lower.includes('recommend') || lower.includes('លក់ដាច់') || lower.includes('ណែនាំ') || lower.includes('top')) {
+                triggerBotCommand('bestsellers');
+                return;
+            }
+
+            // 8a. Track order
+            if (lower.includes('track') || lower.includes('status') || lower.includes('where is my order') || lower.includes('តាមដាន') || lower.includes('ស្ថានភាព') || lower.includes('order status')) {
+                showOrderTracking();
+                return;
+            }
+
+            // 8b. Delivery / Shipping info
+            if (lower.includes('delivery') || lower.includes('shipping') || lower.includes('ដឹកជញ្ជូន') || lower.includes('ផ្ញើ') || lower.includes('express') || lower.includes('free shipping')) {
+                appendBotMessage(
+                    isKhmer
+                        ? `🚚 <strong>ការដឹកជញ្ជូន ANGKOR SHOP:</strong><br>• ដឹកជញ្ជូនឥតគិតថ្លៃ នៅភ្នំពេញ សម្រាប់ការបញ្ជាទិញលើស <strong>$60</strong><br>• សេវាកម្ម Express ក្នុងថ្ងៃ (BKK1 និងតំបន់កណ្តាល)<br>• លេខទូរស័ព្ទ: <strong>${OWNER_PHONE_DISPLAY}</strong>`
+                        : `🚚 <strong>ANGKOR SHOP Delivery:</strong><br>• <strong>FREE Express Delivery</strong> in Phnom Penh for orders over <strong>$60</strong><br>• Same-day express available in BKK1 & central areas<br>• Contact: <strong>${OWNER_PHONE_DISPLAY}</strong>`,
+                    [
+                        { label: isKhmer ? '🚚 តាមដានការបញ្ជាទិញ' : '🚚 Track My Order', action: "triggerBotCommand('track_order')" },
+                        { label: isKhmer ? '📦 មើលកន្ត្រក' : '📦 View My Bag', action: 'toggleCartDrawer(true)' }
+                    ]
+                );
+                return;
+            }
+
+            // 9. Product keyword search
+            const productKeywords = [
+                { keys: ['hoodie', 'hoodies', 'អាវហ៊ូឌី', 'ហ៊ូឌី'], id: 'as-1', name: '480GSM Heavyweight Boxy Acid-Wash Hoodie', price: 44 },
+                { keys: ['cargo', 'cargos', 'parachute', 'ខោកាហ្គោ', 'កាហ្គោ'], id: 'as-7', name: 'Tactical 8-Pocket Ripstop Parachute Cargo Pants', price: 48 },
+                { keys: ['sneaker', 'sneakers', 'runner', 'runners', 'ស្បែកជើង', 'ប៉ាតា'], id: 'as-12', name: 'Aero-Mesh 2000s Chunky Retro Runner Sneakers', price: 79 },
+                { keys: ['trench', 'coat', 'jacket', 'អាវក្រៅ', 'អាវវែង'], id: 'as-2', name: 'Atelier Double-Breasted Cropped Trench Coat', price: 68 },
+                { keys: ['tee', 't-shirt', 'tshirt', 'អាវយឺត'], id: 'as-4', name: 'Phnom Penh Puff-Print Oversized Graphic Tee', price: 26 },
+                { keys: ['bag', 'bags', 'messenger', 'crossbody', 'កាបូប'], id: 'as-17', name: 'Ballistic Nylon Tactical Crossbody Messenger Bag', price: 39 },
+                { keys: ['watch', 'watches', 'នាឡិកា'], id: 'as-19', name: 'Minimalist Brushed Steel Automatic Chronograph', price: 88 },
+                { keys: ['loafer', 'loafers'], id: 'as-14', name: 'Chunky Lug-Sole Polished Leather Penny Loafers', price: 72 }
+            ];
+
+            for (const item of productKeywords) {
+                if (item.keys.some(k => lower.includes(k))) {
+                    appendBotMessage(
+                        isKhmer
+                            ? `🔥 <strong>${item.name}</strong><br>តម្លៃ: <strong>$${item.price.toFixed(2)}</strong><br>ចង់បន្ថែមទៅកន្ត្រកទេ?`
+                            : `🔥 <strong>${item.name}</strong><br>Price: <strong>$${item.price.toFixed(2)}</strong><br>Want to add it to your bag?`,
+                        [
+                            { label: isKhmer ? `➕ បន្ថែម $${item.price}` : `➕ Add to Bag ($${item.price})`, action: `quickAddToBag('${item.id}')` },
+                            { label: isKhmer ? '👁️ មើលលម្អិត' : '👁️ Quick View', action: `openQuickView('${item.id}')` },
+                            { label: isKhmer ? '🔥 ផលិតផលផ្សេងទៀត' : '🔥 More Best Sellers', action: "triggerBotCommand('bestsellers')" }
+                        ]
+                    );
+                    return;
+                }
+            }
+
+            // 10. Location / Hours
+            if (lower.includes('open') || lower.includes('hour') || lower.includes('location') || lower.includes('address') || lower.includes('where') || lower.includes('ម៉ោង') || lower.includes('ទីតាំង') || lower.includes('អាសយដ្ឋាន')) {
+                appendBotMessage(
+                    isKhmer
+                        ? `📍 <strong>ANGKOR SHOP – Phnom Penh Flagship</strong><br>• តំបន់: BKK1, ភ្នំពេញ<br>• បម្រើតាមអ៊ីនធឺណិត 24/7 + ដឹកជញ្ជូន Express<br>• ទំនាក់ទំនងផ្ទាល់: <strong>${OWNER_PHONE_DISPLAY}</strong>`
+                        : `📍 <strong>ANGKOR SHOP – Phnom Penh Flagship</strong><br>• Area: BKK1, Phnom Penh<br>• Online 24/7 + Same-day Express Delivery<br>• Direct contact: <strong>${OWNER_PHONE_DISPLAY}</strong>`,
+                    [
+                        { label: isKhmer ? '✈️ បើក Telegram' : '✈️ Open Telegram', href: OWNER_TG_LINK },
+                        { label: isKhmer ? '📞 ហៅឥឡូវ' : '📞 Call Now', href: `tel:${OWNER_PHONE}`, target: '_self' }
+                    ]
+                );
+                return;
+            }
+
+            // 11. Thanks
+            if (lower.includes('thank') || lower.includes('thanks') || lower.includes('អរគុណ') || lower.includes('សូមអរគុណ')) {
+                appendBotMessage(
+                    isKhmer
+                        ? `🙏 អរគុណច្រើន! ប្រសិនបើអ្នកត្រូវការជំនួយបន្ថែម សូមផ្ញើសារមកខ្ញុំបានគ្រប់ពេល។ សូមរីករាយជាមួយការទិញទំនិញនៅ ANGKOR SHOP!`
+                        : `🙏 You're welcome! Feel free to message anytime if you need more help. Enjoy shopping at ANGKOR SHOP!`,
+                    [{ label: isKhmer ? '🛍️ បន្តទិញ' : '🛍️ Continue Shopping', action: "document.getElementById('catalog-section').scrollIntoView({behavior:'smooth'})" }]
+                );
+                return;
+            }
+
+            // 12. Fallback → forward to human
+            const encoded = encodeURIComponent(`Hello ANGKOR SHOP (${OWNER_PHONE_DISPLAY})! ${text}`);
+            appendBotMessage(
+                isKhmer
+                    ? `ខ្ញុំមិនទាន់យល់សាររបស់អ្នកច្បាស់ទេ។ សូមជ្រើសរើសជម្រើសខាងក្រោម ឬផ្ញើសារផ្ទាល់ទៅម្ចាស់ហាង:`
+                    : `I'm not 100% sure what you need. Please choose an option below or talk directly to the store owner:`,
+                [
+                    { label: isKhmer ? '🔥 ផលិតផលលក់ដាច់' : '🔥 Best Sellers', action: "triggerBotCommand('bestsellers')" },
+                    { label: isKhmer ? '🎟️ កូដបញ្ចុះតម្លៃ' : '🎟️ Promo Code', action: "triggerBotCommand('promo')" },
+                    { label: isKhmer ? `✈️ ផ្ញើទៅ Telegram (${OWNER_PHONE_DISPLAY})` : `✈️ Send to Telegram (${OWNER_PHONE_DISPLAY})`, href: `https://t.me/+855967962929?text=${encoded}` },
+                    { label: isKhmer ? `✉️ ផ្ញើ Email` : `✉️ Send Email`, href: `mailto:${OWNER_EMAIL}?subject=ANGKOR%20SHOP%20Chat&body=${encoded}`, target: '_self' }
+                ]
+            );
+        }
+
+        function checkoutViaTelegram() {
+            toggleCartDrawer(false);
+            toggleTelegramBot(true);
+            triggerBotCommand('send_cart');
+        }
+
+        function checkoutViaEmail() {
+            const summary = buildOrderSummaryText();
+            const mailUrl = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent('ANGKOR SHOP Order — Tel ' + OWNER_PHONE_DISPLAY)}&body=${encodeURIComponent(summary)}`;
+            window.location.href = mailUrl;
+            showToast('Opening Email Client', `Preparing order email to ${OWNER_EMAIL}`);
+        }
+
+        function copyOrderSummaryToClipboard() {
+            const summary = buildOrderSummaryText();
+            copyContactValue(summary, 'Order Summary');
+        }
+
+        function copyContactValue(value, label) {
+            const temp = document.createElement('textarea');
+            temp.value = value;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast(`${label} Copied!`, `Copied to your clipboard.`);
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function toggleThemeMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                if (icon) icon.className = 'ph-fill ph-moon text-lg accent-text';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                if (icon) icon.className = 'ph-fill ph-sun text-lg accent-text';
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'kh' : 'en';
+            const dict = I18N[currentLang];
+
+            document.getElementById('stories-heading').textContent = dict.storiesHeading;
+            document.getElementById('nav-bag-text').textContent = dict.navBag;
+            const heroCtaPrimary = document.getElementById('hero-cta-primary');
+            if (heroCtaPrimary) heroCtaPrimary.textContent = dict.ctaPrimary;
+            // hero-cta-secondary does not exist in HTML — skip safely
+            const bundleTitle = document.getElementById('bundle-title');
+            if (bundleTitle) bundleTitle.textContent = dict.bundleTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+
+            selectCollection(activeCollection, false);
+            showToast(
+                currentLang === 'kh' ? 'បានប្តូរទៅជាភាសាខ្មែរ' : 'Switched to English',
+                currentLang === 'kh' ? 'សូមស្វាគមន៍មកកាន់ ANGKOR SHOP' : 'ANGKOR SHOP storefront updated to English.'
+            );
+        }
+
+        function startFlashTimer() {
+            let totalSeconds = 4 * 3600 + 42 * 60 + 19;
+            setInterval(() => {
+                if (totalSeconds > 0) totalSeconds--;
+                const hrs = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+                const mins = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+                const secs = String(totalSeconds % 60).padStart(2, '0');
+                const el = document.getElementById('flash-timer');
+                if (el) el.textContent = `${hrs}:${mins}:${secs}`;
+            }, 1000);
+        }
+
+        let toastTimer = null;
+        function showToast(title, body) {
+            const toast = document.getElementById('studio-toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-body').textContent = body;
+            toast.classList.remove('-translate-x-[150%]');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.add('-translate-x-[150%]'), 3200);
+        }
+
+        // initApp is started via DOMContentLoaded (see above)
+    </script>
+</body>
+</html>
